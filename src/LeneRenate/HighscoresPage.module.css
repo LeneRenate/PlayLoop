@@ -1,4 +1,14 @@
+.highscoreHeader {
+  font-family: calibri, sans-serif;
+}
+
 .gameSection {
   border: 1px solid black;
   border-radius: 15px;
+}
+
+.memoryGame {
+}
+
+.reactionGame {
 }
