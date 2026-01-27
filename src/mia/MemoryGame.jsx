@@ -1,11 +1,12 @@
+import "./styles/memory.css";
 
 function MemoryGame() {
   return (
-    <main>
-      <header className="memoryHeader">
+    <section>
+      <header className="memory-header">
         <h1>Memory Game</h1>
       </header>
-    </main>
+    </section>
   );
 }
 
