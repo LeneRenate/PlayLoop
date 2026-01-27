@@ -7,7 +7,7 @@ import TestPage from "../LeneRenate/TestPage";
 
 export const router = createBrowserRouter([
   {
-    path: "/PlayLoop/",
+    path: "/",
     element: <App />,
     errorElement: <h1>An error occured</h1>,
     children: [
