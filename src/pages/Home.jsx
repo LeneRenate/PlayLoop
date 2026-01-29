@@ -10,14 +10,14 @@ export default function Home() {
       title: "Mia-sitt-spill",
       image: "/bilde1.jpg",
       description: " ",
-      path: "/PlayLoop/mia/MemoryGame",
+      path: "memorygame",
     },
     {
       id: 2,
       title: "Therese-sitt-spill",
       image: "/bilde2.jpg",
       description: " ",
-      path: "/PlayLoop/Therese/ReactionGame",
+      path: "reactiongame",
     },
   ];
 
@@ -29,7 +29,7 @@ export default function Home() {
       {/* Grid som viser spill-kortene */}
       <section style={gridStyle}>
         {games.map((game) => (
-          <Gamecard
+          <GameCard
             key={game.id}
             title={game.title}
             description={game.description}
