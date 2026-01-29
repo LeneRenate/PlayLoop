@@ -9,14 +9,16 @@ export default function Home() {
     {
       id: 1,
       title: "Mia-sitt-spill",
-      description: " ",
       image: "/bilde1.jpg",
+      description: " ",
+      path: "/PlayLoop/memorygame",
     },
     {
       id: 2,
       title: "Therese-sitt-spill",
-      description: " ",
       image: "/bilde2.jpg",
+      description: " ",
+      path: "/PlayLoop/reactiongame",
     },
   ];
 
