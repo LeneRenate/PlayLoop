@@ -1,8 +1,7 @@
 
-// "Status: Header/Footer er placeholders. Rutingen er ikke helt ferdig koblet mot Home ennå. Spør Lene Renate om main.jsx er klar."*
 
 import Hero from "../components/Hero";
-import Gamecard from "../components/GameCard";
+import GameCard from "../components/GameCard";
 
 export default function Home() {
   const games = [
@@ -11,14 +10,14 @@ export default function Home() {
       title: "Mia-sitt-spill",
       image: "/bilde1.jpg",
       description: " ",
-      path: "/PlayLoop/memorygame",
+      path: "/PlayLoop/mia/MemoryGame",
     },
     {
       id: 2,
       title: "Therese-sitt-spill",
       image: "/bilde2.jpg",
       description: " ",
-      path: "/PlayLoop/reactiongame",
+      path: "/PlayLoop/Therese/ReactionGame",
     },
   ];
 
@@ -28,7 +27,7 @@ export default function Home() {
       <h2 style={{ textAlign: "center", margin: "40px 0" }}>Våre Spill</h2>
 
       {/* Grid som viser spill-kortene */}
-      <section>
+      <section style={gridStyle}>
         {games.map((game) => (
           <Gamecard
             key={game.id}
