@@ -78,7 +78,7 @@ function ReactionGame() {
   return (
     <div className="rg-wrapper">
       <div className="rg-card">
-        <h1 className="rg-title">Thereses Reaction Game ⚡</h1>
+        <h1 className="rg-title">⚡ Reaction Game ⚡</h1>
         <p className="rg-subtitle">
           Klikk så fort du kan når boksen blir grønn.
         </p>

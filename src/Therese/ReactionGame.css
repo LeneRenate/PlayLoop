@@ -1,93 +1,127 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+/* =========================
+   WRAPPER
+   ========================= */
 .rg-wrapper {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #0f172a, #020617);
-  font-family:
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
+  background:
+    radial-gradient(circle at top, #1e1b4b, #020617 60%),
+    linear-gradient(135deg, #0f172a, #020617);
+  font-family: "Press Start 2P", system-ui, sans-serif;
   color: #e5e7eb;
 }
 
+/* =========================
+   CARD
+   ========================= */
 .rg-card {
-  background: rgba(15, 23, 42, 0.9);
+  background: rgba(15, 23, 42, 0.95);
   border-radius: 24px;
   padding: 32px 36px;
   max-width: 480px;
   width: 100%;
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(148, 163, 184, 0.25);
+  border: 2px solid #22d3ee;
+  box-shadow:
+    0 0 0 2px rgba(34, 211, 238, 0.15),
+    0 0 25px rgba(34, 211, 238, 0.25),
+    0 18px 45px rgba(0, 0, 0, 0.6);
 }
 
+/* =========================
+   TITLES
+   ========================= */
 .rg-title {
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   font-weight: 700;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  color: #67e8f9;
+  text-shadow: 0 0 8px rgba(103, 232, 249, 0.6);
 }
 
 .rg-subtitle {
-  font-size: 0.95rem;
+  font-size: 0.7rem;
   color: #9ca3af;
   margin-bottom: 24px;
 }
 
+/* =========================
+   GAME BOX
+   ========================= */
 .rg-box {
   width: 100%;
   height: 220px;
   border-radius: 18px;
-  background: #111827;
-  border: 2px dashed #4b5563;
+  background: #020617;
+  border: 3px solid #38bdf8;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   margin-bottom: 20px;
+  text-align: center;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.25);
+  box-shadow:
+    inset 0 0 20px rgba(0, 0, 0, 0.6),
+    0 0 18px rgba(56, 189, 248, 0.2);
   transition:
     background 0.18s ease,
     border-color 0.18s ease,
-    transform 0.06s ease;
+    transform 0.06s ease,
+    box-shadow 0.18s ease;
 }
 
 .rg-box:hover {
   transform: translateY(-1px);
 }
 
+/* =========================
+   GAME STATES
+   ========================= */
 .rg-box--waiting {
-  background: #f97316;
+  background: #fb923c;
   border-color: #fed7aa;
+  box-shadow: 0 0 20px rgba(251, 146, 60, 0.7);
 }
 
 .rg-box--ready {
   background: #22c55e;
   border-color: #bbf7d0;
+  box-shadow: 0 0 25px rgba(34, 197, 94, 0.8);
 }
 
 .rg-box--toosoon {
   background: #ef4444;
   border-color: #fecaca;
+  box-shadow: 0 0 25px rgba(239, 68, 68, 0.8);
 }
 
 .rg-box-text {
-  font-size: 1.4rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  text-align: center;
 }
 
+/* =========================
+   BUTTON
+   ========================= */
 .rg-button {
   width: 100%;
-  padding: 10px 16px;
+  padding: 12px 16px;
   border-radius: 999px;
-  border: none;
-  font-size: 1rem;
+  border: 2px solid #67e8f9;
+  font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
-  background: #38bdf8;
-  color: #0b1120;
-  box-shadow: 0 10px 25px rgba(56, 189, 248, 0.3);
+  background: linear-gradient(180deg, #22d3ee, #0ea5e9);
+  color: #020617;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow:
+    0 0 15px rgba(34, 211, 238, 0.6),
+    inset 0 -3px 0 rgba(0, 0, 0, 0.4);
   transition:
     transform 0.08s ease,
     box-shadow 0.08s ease,
@@ -95,27 +129,31 @@
 }
 
 .rg-button:hover {
-  filter: brightness(1.05);
+  filter: brightness(1.1);
   transform: translateY(-1px);
-  box-shadow: 0 14px 30px rgba(56, 189, 248, 0.35);
 }
 
 .rg-button:active {
   transform: translateY(1px);
-  box-shadow: 0 6px 18px rgba(56, 189, 248, 0.25);
+  box-shadow:
+    0 0 10px rgba(34, 211, 238, 0.4),
+    inset 0 2px 0 rgba(0, 0, 0, 0.4);
 }
 
+/* =========================
+   INFO / STATS
+   ========================= */
 .rg-info {
   margin-top: 16px;
-  font-size: 0.9rem;
+  font-size: 0.65rem;
   color: #d1d5db;
 }
 
 .rg-stats {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
-  font-size: 0.9rem;
+  margin-top: 12px;
+  font-size: 0.65rem;
 }
 
 .rg-label {
@@ -125,4 +163,6 @@
 
 .rg-value {
   font-weight: 600;
+  color: #facc15;
+  text-shadow: 0 0 6px rgba(250, 204, 21, 0.7);
 }
