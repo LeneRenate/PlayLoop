@@ -1,5 +1,3 @@
-
-
 import Hero from "../components/Hero";
 import GameCard from "../components/GameCard";
 import cowboyEmoji from "../assets/Cowboyemoji.json";
