@@ -1,4 +1,5 @@
-// eslint-disable-next-line no-unused-vars
+
+/* eslint-disable no-unused-vars */
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Lottie from "lottie-react";
@@ -9,77 +10,77 @@ import { useState} from "react";
 export default function GameCard({ title, image, path, lottieJson, isPrimary }) {
   const [isHovered, setIsHovered] = useState(false);
 
-  // Dynamiske klasser
-  const neonBorder = isPrimary
-    ? "border-secondary shadow-[0_0_15px_rgba(255,0,255,0.5)]"
-    : "border-primary shadow-[0_0_15px_rgba(0,242,255,0.5)]";
-
-  const neonText = isPrimary
-      ? "neon-text-pink text-magenta-500"
-      : "neon-text-cyan text-cyan-400";
-
-  const glowClass = isPrimary
-        ? "arcade-screen-glow-pink"
-        : "arcade-screen-glow-cyan";
-
   return (
-    <motion.div
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      // 3d hover-effekt
-      whileHover={{
-        scale: 1.05,
-        rotateY: 0,
-        rotateX: 10,
-        boxShadow: "0px 20px 40px rgba(0,0,0,0.4)",
-      }}
-      whileTap={{ scale: 0.95 }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className={`relative overflow-hidden cursor-pointer bg-black/80 border-4 p-6 rounded-lg grainy flex flex-col items-center min-h-[400px] ${neonBorder} ${glowClass}`}
-    >
-      {/* Bakgrunnsmønster inni kortet */}
-      <div
-        className="absolute inset-0 opacity-10 pointer-events-none"
-        style={{
-          backgroundImage: "url('/gamecard-bg.svg')",
-          backgroundSize: "cover",
+    <div className="relative group p-4">
+   
+      <motion.div
+        className="relative overflow-hidden cursor-pointer border-4 border-black rounded-sm flex flex-col items-center `min-h-150`"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        whileHover={{
+          scale: 1.02,
         }}
-      ></div>
-      {/* Overskrift med retro-font */}
-      <h3 className={`font-neon text-3xl mb-6 z-10 ${neonText}`}>{title}</h3>
+        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+      >
+        {/* Sjakkmønster på gamecard*/}
+        <div className="absolute inset-0 z-0 opacity-100 checkerboard-pattern pointer-events-none"></div>
 
-      <div className="flex-grow flex justify-center items-center z-10 h-[180px]">
-        {isHovered && lottieJson ? (
-          // Lottie animasjon - 3d
-          <motion.div
-            initial={{ rotateY: 0 }}
-            animate={{ rotateY: 0, rotateX: 0 }}
-            classname="w-40"
-          >
-            <Lottie animationData={lottieJson} loop={true} />
-          </motion.div>
-        ) : (
-          // 2d bildet
-          <motion.img
-            src={image}
-            alt={title}
-            className="w-32 drop-shadow-[0_0_10px_rgba(252,211,77,0.8)]"
-            initial={{ scale: 1 }}
-            animate={{ rotate: isHovered ? [0, -5, 5, 0] : 0 }}
-          />
-        )}
-      </div>
+        {/* inner-ramme*/}
+        <div className="relative z-10 m-14 grow w-full h-full flex flex-col items-center p-6 bg-white border-[6px] border-black shadow-[8px_8px_0px_rgba(0,0,0,0.15)]">
+          {/* Bilde/emoji-område*/}
+          <div className="grow flex justify-center items-center relative w-full mt-4">
+            {isHovered && lottieJson ? (
+              <motion.div className="w-56 z-10">
+                <Lottie animationData={lottieJson} loop={true} />
+              </motion.div>
+            ) : (
+              <motion.img
+                src={image}
+                alt={title}
+                className="w-48 drop-shadow-2xl z-10"
+                animate={{ y: [0, -10, 0] }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+            )}
+          </div>
+
+          {/* Spilltittel */}
+          <div className="relative z-30 -mb-12 mt-2">
+            <h2
+              className="font-neon leading-[0.8] text-center"
+              style={{ color: "#E0748F" }}
+            >
+              <span className="block text-6xl drop-shadow-[4px_4px_0px_white] filter drop-shadow(4px 4px 0px black)">
+                Memory
+              </span>
+              <span className="block text-5xl ml-10 drop-shadow-[4px_4px_0px_white] filter drop-shadow(4px 4px 0px black)">
+                Game
+              </span>
+            </h2>
+          </div>
+
+          {/* Rosa skillelinje under tittelen */}
+          <div className="h-1.5 w-1/2 bg-[#E0748F] mt-12 border-b-2 border-black"></div>
+
+
+          {/* tekst nederst */}
+          <div className="text-black font-retro text-sm mt-4 text-center leading-tight uppercase opacity-70">
+            Limited Edition Arcade Series <br />© 1984 Playloop Computing
+          </div>
+
           {/* Play-knapp */}
           <Link
-          to={path}
-          className={`mt-6 font-neon text-xl py-2 px-10 rounded-full text-white transition-all duration-300 z-10
-          ${isPrimary 
-            ? "bg-magenta-600 hover:bg-magenta-500 shadow-[0_0_15px_rgba(255,0,255,0.6)]" 
-            : "bg-cyan-600 hover:bg-cyan-500 shadow-[0_0_15px_rgba(0,242,255,0.6)]"
-          }`}
-        >
-        PLAY
-      </Link>
-    </motion.div>
+            to={path}
+            className="mt-6 font-retro text-2xl py-2 px-12 text-white bg-[#E0748F] border-2 border-black shadow-[4px_4px_0px_black] hover:shadow-[2px_2px_0px_black] `hover:translate-y-0.5` transition-all duration-200 active:translate-y-1"
+          >
+            PLAY NOW
+          </Link>
+        </div>
+      </motion.div>
+    </div>
   );
 }
