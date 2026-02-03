@@ -58,6 +58,9 @@ function useMemoryGame() {
   }, [flippedIndices, cards]);
   /* eslint-enable react-hooks/set-state-in-effect */
 
+
+  const isGameComplete = matchedIndices.length === cards.length;
+
   //   Reset game/new round
 
   function resetGame() {
@@ -75,6 +78,7 @@ function useMemoryGame() {
     matchedIndices,
     score,
     moves,
+    isGameComplete,
     handleCardClick,
     resetGame,
   };
