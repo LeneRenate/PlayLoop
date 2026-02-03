@@ -26,7 +26,7 @@ export default function Home() {
     <div className="max-w-7xl mx-auto px-5 brick-pattern min-h-screen">
       <Hero />
       <h2 className="text-center my-10 font-display text-3xl text-primary uppercase italic tracking-widest">
-        Våre Spill
+        Utforsk vår retro arcade
       </h2>
 
       {/* Grid som viser spill-kortene */}

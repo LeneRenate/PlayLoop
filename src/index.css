@@ -1,10 +1,62 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&display=swap');
+
+/* Fontene vi bruker importeres her */
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Shade&family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@700&family=Montserrat:ital,wght@0,900;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@700&family=Montserrat+Alternates:ital,wght@0,900;1,900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Alice&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Pompiere&family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap');
 
 
 
 
 
+:root {
+  /* --- FONTER --- */
+   /* Hovedfont: Brødtekst/knapper */
+  --font-main: 'Fredoka', sans-serif;   
+  
+  /* Arkade/Score-stil */
+  --font-retro: 'VT323', monospace;   
+  
+  /* Neon-Overskrift:Play loop  */
+  --font-neon: 'Bungee Shade', cursive;   
+  
+  /* Kun brukt pga. double-story g fra memo-gamecard (Titler) */
+  --font-display:  "'Schibsted Grotesk', sans-serif",
+
+
+  /* --- FARGER - NEUTRALS--- */
+  --color-bg-dark: #0a0a12;       /* Bakgrunnsfargen på siden */
+  --color-card-bg: #EADCBE;      /* Bakgrunnsfargen på game-cards */
+
+  /* --- HOVEDFARGER --- */
+  --color-neon-pink: #ff00ff;     /* Som "Play" i neonskiltet */
+  --color-neon-cyan: #00ffff;     /* som "Loop" i neonskiltet */
+  --color-text-yellow: #ffff00;    /* Gul farge brukt i "Insert coin to start" */
+ 
+
+  /* ---ANDRE AKTUELLE FARGER--- */
+  --color-light-pink: #B7A0B8;      /* Den støvrosa fargen på Memory-tittelen */
+  --color-dusty-lilac: #D6C3D5;  /* Den lyse lilla fargen på Memory-bakgrunnen */
+  --color-darker-lilac: #726F98; /* Den mørkere lilla fargen på Memo-cards */
+ 
+
+  /* --- STØRRELSER --- */
+  --size-title: 80px;
+  --size-subtitle: 14px;
+  --radius-card: 40px;
+}
+
+/* Hovedfonten på hele siden */
+body {
+  font-family: var(--font-main);
+  background-color: var(--color-bg-dark);
+}
+
+
+
+/* --- ANIMASJONER OG EFFEKTER --- */
 
 /* Animasjon for blinking */
 @keyframes flicker {

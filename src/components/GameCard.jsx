@@ -36,6 +36,7 @@ export default function GameCard({ title, image, path, lottieJson}) {const [isHo
       className="py-24 flex justify-center items-center"
       style={{ perspective: "1500px" }}
     >
+      {/* SELVE KORTET */}
       <motion.div
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setIsHovered(true)}
@@ -66,7 +67,7 @@ export default function GameCard({ title, image, path, lottieJson}) {const [isHo
         <div
           className="absolute inset-0 rounded-[40px] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] overflow-hidden border border-black/5"
           style={{
-            // PAPIR-BILDE-BAKGRUNN
+            // BILDE-BAKGRUNN
             backgroundImage: `url('gamecard_mia.png')`,
             backgroundSize: "cover",
             backgroundPosition: "center",
@@ -116,61 +117,104 @@ export default function GameCard({ title, image, path, lottieJson}) {const [isHo
 
         {/* TITTEL -posisjonert over bakgrunnsbildet*/}
         <div
-          className="absolute z-20"
+          className="absolute z-20 w-full"
           style={{
-            top: "42%",
+            top: "40%",
             left: "50%",
-            width: "100%",
             transform: "translateX(-50%) translateZ(90px)",
           }}
         >
           <h2
-            className="text-center italic tracking-tighter"
+            className="text-center italic"
             style={{
-              fontFamily: "'Source Serif 4', serif",
-              fontWeight: "900",
-              fontSize: "75px",
-              lineHeight: "0.8",
+              fontFamily: "'Fredoka', sans-serif",
+              fontWeight: "700",
+              fontSize: "85px",
+              lineHeight: "0.75",
               color: "#B7A0B8",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
               textShadow: `
-      -1.5px -1.5px 0 #06070C, 1.5px -1.5px 0 #06070C, -1.5px 1.5px 0 #06070C, 1.5px 1.5px 0 #06070C,
-      /* 2. Den 'doble' streken (en skygge som ligger rett under) */
-      0px 4px 0px #06070C, 
-      /* 3. Selve bunnen av klistremerket */
-      0px 7px 0px #06070C,
-      /* 4. Myk skygge som kastes på bakgrunnen */
-      0px 12px 20px rgba(0,0,0,0.5)
-    `,
+                -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000,
+                0px 5px 0px #000, 
+                0px 8px 0px #000,
+                0px 15px 25px rgba(0,0,0,0.4)
+              `,
             }}
           >
-            <span className="block" style={{ marginBottom: "-5px" }}>
-              Memory
-            </span>
+            {/* "Memory" */}
             <span
-              className="block ml-6"
+              className="block"
               style={{
-                fontSize: "68px",
-                textTransform: "lowercase",
+                transform: "scaleX(0.9) scaleY(1.1)",
+                letterSpacing: "-2px",
               }}
             >
-              game
+              Memory
+            </span>
+
+            {/*  bytter til Spesial-g fra Montserrat */}
+            <span
+              className="block"
+              style={{ fontSize: "75px", marginTop: "8px" }}
+            >
+              <span
+                style={{
+                  fontFamily: "'Schibsted Grotesk', sans-serif",
+                  fontWeight: "900",
+                  display: "inline-block",
+                  transform: "scaleX(1.1) scaleY(1.15) translateY(2px)",
+                  marginRight: "-12px", // Drar 'a'-en litt nærmere
+                }}
+              >
+                g
+              </span>
+              <span
+                style={{
+                  display: "inline-block",
+                  transform: "scaleX(0.9) scaleY(1.1)",
+                  letterSpacing: "-1px",
+                }}
+              >
+                ame
+              </span>
             </span>
           </h2>
         </div>
+      </motion.div>
 
-        {/* PLAY NOW- knapp */}
-        <div
-          className="absolute bottom-10"
-          style={{ transform: "translateZ(40px)" }}
+      {/* PLAY NOW- KNAPP */}
+      <div
+        className="absolute bottom-12"
+        style={{ transform: "translateZ(110px)" }}
+      >
+        <Link
+          to={path}
+          className="py-4 px-12 text-white font-black bg-[#79067D] rounded-full border-b-[6px] border-pink-900 shadow-[0_10px_30px_rgba(224,116,143,0.4)] hover:brightness-110 active:border-b-0 active:translate-y-1.5 transition-all tracking-widest"
         >
-          <Link
-            to={path}
-            className="py-4 px-12 text-white font-black bg-[#E0748F] rounded-full border-b-[6px] border-pink-900 shadow-[0_10px_30px_rgba(224,116,143,0.4)] hover:brightness-110 active:border-b-0 `active:translate-y-1.5` transition-all tracking-widest"
+          {/* Knappens kropp med dybde-effekt */}
+          <span
+            className="absolute inset-0 rounded-2xl bg-[#79067D] border-2 border-black/20"
+            style={{
+              boxShadow: `
+                0 8px 0 #A81C41,              /* Selve tykkelsen på knappen */
+                0 15px 25px rgba(255, 46, 99, 0.4), /* Neon-glød på bakken */
+                inset 0 4px 4px rgba(255,255,255,0.3), /* Lysrefleksjon øverst */
+                inset 0 -4px 6px rgba(0,0,0,0.3)      /* Skygge nederst på knappen */
+              `,
+            }}
+          />
+
+          {/* Teksten "Play now" */}
+          <span
+            className="relative z-10"
+            style={{ textShadow: "0 2px 4px rgba(0,0,0,0.5)" }}
           >
             PLAY NOW
-          </Link>
-        </div>
-      </motion.div>
+          </span>
+        </Link>
+      </div>
     </div>
   );
 }
