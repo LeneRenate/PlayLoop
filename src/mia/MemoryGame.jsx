@@ -2,7 +2,7 @@ import "./styles/flip.css";
 import { useState, useEffect } from "react";
 import cardData from "./data/cardData.js";
 import { shuffle } from "./utils/shuffle.js";
-import Card from "../Mia/components/Card.jsx";
+import GameBoard from "../Mia/components/GameBoard.jsx"
 
 function MemoryGame() {
   // doubled and shuffled cards
@@ -75,18 +75,12 @@ function MemoryGame() {
             </p>
           </p>
         </header>
-        {/* Game board */}
-        <div className="grid grid-cols-4 gap-4">
-       {cards.map((card, index) => (
-        <Card 
-        key={index}
-        card={card}
-        isFlipped={flippedIndices.includes(index)}
-        isMatched={matchedIndices.includes(index)}
-        onClick={()=> handleCardClick(index)}
+        <GameBoard
+        cards={cards}
+        flippedIndices={flippedIndices}
+        matchedIndices={matchedIndices}
+        onCardClick={handleCardClick}
         />
-       ))}
-        </div>
       </article>
     </div>
   );
