@@ -7,7 +7,7 @@ import { useState} from "react";
 
 
 
-export default function GameCard({ title, image, path, lottieJson}) {const [isHovered, setIsHovered] = useState(false);
+export default function GameCard({ title, image, path, customTitle, lottieJson}) {const [isHovered, setIsHovered] = useState(false);
 
   // PARALLAX EFFEKT: 3D
   const x = useMotionValue(0);
@@ -68,7 +68,7 @@ export default function GameCard({ title, image, path, lottieJson}) {const [isHo
           className="absolute inset-0 rounded-[40px] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] overflow-hidden border border-black/5"
           style={{
             // BILDE-BAKGRUNN
-            backgroundImage: `url('gamecard_mia.png')`,
+            backgroundImage: `url(${image})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundColor: "#EAE3D6", // Fallback hvis bildet ikke laster
@@ -115,72 +115,31 @@ export default function GameCard({ title, image, path, lottieJson}) {const [isHo
           </motion.div>
         </div> */}
 
-        {/* TITTEL -posisjonert over bakgrunnsbildet*/}
+        {/* TITTEL-SVEVENDE "Rendrer customTitle fra Home.jsx*/}
         <div
-          className="absolute z-20 w-full"
+          className="absolute z-20 w-full pointer-events-none"
           style={{
-            top: "40%",
+            top: "43%",
             left: "50%",
-            transform: "translateX(-50%) translateZ(90px)",
+            transform: "translateX(-50%) translateZ(100px)",
+            transformStyle: "preserve-3d",
           }}
         >
-          <h2
-            className="text-center italic"
+          <div
             style={{
               fontFamily: "'Fredoka', sans-serif",
-              fontWeight: "700",
-              fontSize: "85px",
-              lineHeight: "0.75",
-              color: "#B7A0B8",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
               textShadow: `
-                -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000,
-                0px 5px 0px #000, 
-                0px 8px 0px #000,
-                0px 15px 25px rgba(0,0,0,0.4)
-              `,
+        -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000,
+        0px 5px 0px #000, 
+        0px 8px 0px #000,
+        0px 15px 25px rgba(0,0,0,0.4)
+      `,
+              color: "#b7a0b8",
             }}
           >
-            {/* "Memory" */}
-            <span
-              className="block"
-              style={{
-                transform: "scaleX(0.9) scaleY(1.1)",
-                letterSpacing: "-2px",
-              }}
-            >
-              Memory
-            </span>
-
-            {/*  bytter til Spesial-g fra Montserrat */}
-            <span
-              className="block"
-              style={{ fontSize: "75px", marginTop: "8px" }}
-            >
-              <span
-                style={{
-                  fontFamily: "'Schibsted Grotesk', sans-serif",
-                  fontWeight: "900",
-                  display: "inline-block",
-                  transform: "scaleX(1.1) scaleY(1.15) translateY(2px)",
-                  marginRight: "-12px", // Drar 'a'-en litt nærmere
-                }}
-              >
-                g
-              </span>
-              <span
-                style={{
-                  display: "inline-block",
-                  transform: "scaleX(0.9) scaleY(1.1)",
-                  letterSpacing: "-1px",
-                }}
-              >
-                ame
-              </span>
-            </span>
-          </h2>
+            {/* HER VISES TEKSTEN FRA HOME.JSX */}
+            {customTitle}
+          </div>
         </div>
       </motion.div>
 
