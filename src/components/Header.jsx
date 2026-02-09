@@ -6,7 +6,7 @@ export default function Header() {
 
 
   return (
-    <nav className="sticky top-0  z-[100] w-full bg-transparent py-8 px-10 md:px-20 flex items-center justify-between">
+    <nav className="absolute top-0  z-[100] w-full bg-transparent py-8 px-10 md:px-20 flex items-center justify-between">
       {/* LOGO */}
       <Link to="/" className="no-underline shrink-0">
         <h1

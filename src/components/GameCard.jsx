@@ -143,27 +143,28 @@ export default function GameCard({ title, image, path, customTitle, lottieJson})
           </div>
         </div>
       </motion.div>
-
-      {/* PLAY NOW - KNAPP CONTAINER */}
+      {/* PLAY NOW - TURBO-KNAPP */}
       <div
         className="absolute -bottom-1 left-0 w-full flex justify-center"
         style={{
-          transform: "translateZ(120px)", // Litt ekstra løft for 3D-dybde
+          transform: "translateZ(120px)",
           transformStyle: "preserve-3d",
           pointerEvents: "none",
         }}
       >
         <Link
           to={path}
-          className="group relative flex min-w-[260px] h-14 items-center justify-center rounded-xl transition-all duration-75 hover:scale-105 active:scale-90 pointer-events-auto overflow-hidden shadow-[0_0_25px_rgba(255,0,255,0.4)] border border-[#ff00ff]/40"
+          /* transition-duration er nå nede i 50ms (0.05s) - det er lynraskt */
+          className="group relative flex min-w-[260px] h-14 items-center justify-center rounded-xl pointer-events-auto overflow-hidden border-2 border-[#ff00ff]/50 
+               transition-[transform] duration-[50ms] ease-out hover:scale-105 active:scale-95 shadow-xl"
           style={{
             fontFamily: "'VT323', monospace",
             backgroundColor: "#6a007a",
           }}
         >
-          {/* TEKST - Neon rosa/hvit */}
+          {/* TEKST */}
           <span
-            className="relative z-20 text-3xl tracking-widest  italic"
+            className="relative z-20 text-3xl tracking-widest uppercase italic"
             style={{
               color: "#ffffff",
               textShadow: "0 0 5px #fff, 0 0 15px #ff00ff",
@@ -172,19 +173,19 @@ export default function GameCard({ title, image, path, customTitle, lottieJson})
             Press Start
           </span>
 
-          {/* LYSGLIMT - Lynraskt fra venstre til høyre */}
-          <div className="absolute inset-0 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-75">
-            <div className="absolute top-0 left-0 w-16 h-full bg-white/60 transform -skew-x-12 translate-x-[-250%] group-hover:translate-x-[700%] transition-transform duration-400 ease-in-out" />
+          {/* LYSGLIMT - Bruker "linear" timing for å slippe "acceleration" forsinkelse */}
+          <div className="absolute inset-0 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-0">
+            <div className="absolute top-0 left-0 w-24 h-full bg-white/50 transform -skew-x-12 translate-x-[-300%] group-hover:translate-x-[800%] transition-transform duration-300 ease-linear" />
           </div>
 
-          {/* BAKGRUNN - Burgunder "Light-up" */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#b532d1] via-[#6a007a] to-[#300038] group-hover:brightness-125 transition-all duration-75" />
+          {/* BAKGRUNN - Vi fjerner transition her for at fargen skal "snappe" på med en gang */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#b532d1] via-[#6a007a] to-[#300038] group-hover:from-[#d63ef2] group-hover:via-[#9d00b5]" />
 
-          {/* Lys-stripe på toppkanten */}
-          <div className="absolute top-0 left-0 w-full h-[1px] bg-white/30 z-30" />
+          {/* FAST LYS-STRIPE PÅ TOPPEN */}
+          <div className="absolute top-0 left-0 w-full h-[2px] bg-white/40 z-30 opacity-70" />
 
           {/* INDRE GLØD */}
-          <div className="absolute inset-0 shadow-[inset_0_0_15px_rgba(255,0,255,0.5)] pointer-events-none" />
+          <div className="absolute inset-0 shadow-[inset_0_0_15px_rgba(255,0,255,0.6)] pointer-events-none" />
         </Link>
       </div>
     </div>

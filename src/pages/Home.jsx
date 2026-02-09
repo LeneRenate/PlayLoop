@@ -1,7 +1,7 @@
 import Hero from "../components/Hero";
 import GameCard from "../components/GameCard";
 import cowboyEmoji from "../assets/Cowboyemoji.json";
-import ArcadeMachine from "../components/ArcadeMachine2.jsx";
+import ArcadeMachine from "../components/ArcadeMachine.jsx";
 
 
 export default function Home() {
