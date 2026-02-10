@@ -6,6 +6,7 @@ import useMemoryGame from "../Mia/hooks/useMemoryGame.js";
 import GameHeader from "../Mia/components/GameHeader.jsx";
 import LastGamePanel from "../Mia/components/LastGamePanel.jsx";
 import StartGame from "../Mia/components/StartGame.jsx";
+import GameCompleteOverlay from "../Mia/components/GameCompleteOverlay.jsx";
 
 function MemoryGame() {
   const [nickname, setNickname] = useState("");
@@ -35,29 +36,39 @@ function MemoryGame() {
     });
   }, [isGameComplete, nickname, score, moves]);
 
-  if (!hasStarted) {
-    return (
-      <div className="flex justify-center">
-        <StartGame
-          nickname={nickname}
-          onNicknameChange={setNickname}
-          onStart={() => setHasStarted(true)}
-        />
-      </div>
-    );
-  }
   return (
     // Wrapper
     <div className="flex justify-center">
       {/* Container */}
-      <article className="flex flex-col items-center">
-        <GameHeader score={score} moves={moves} onReset={resetGame} />
-        <GameBoard
-          cards={cards}
-          flippedIndices={flippedIndices}
-          matchedIndices={matchedIndices}
-          onCardClick={handleCardClick}
-        />
+      <article className="flex flex-col items-center gap-6">
+        <GameHeader score={score} moves={moves} />
+        <div className="relative inline-block">
+          <GameBoard
+            cards={cards}
+            flippedIndices={flippedIndices}
+            matchedIndices={matchedIndices}
+            onCardClick={
+              hasStarted && !isGameComplete ? handleCardClick : () => {}
+            }
+          />
+          {!hasStarted && (
+            <StartGame
+              nickname={nickname}
+              onNicknameChange={setNickname}
+              onStart={() => setHasStarted(true)}
+            />
+          )}
+
+          {isGameComplete && (
+            <GameCompleteOverlay
+              onNewGame={() => {
+                resetGame();
+                setHasStarted(true);
+              }}
+            />
+          )}
+        </div>
+
         <LastGamePanel lastGame={lastGame} />
       </article>
     </div>
