@@ -8,7 +8,7 @@ function GameCompleteOverlay ({onNewGame}) {
                 <button onClick={onNewGame}>
                     New game
                 </button>
-            </section>
+            </section> 
         </div>
     );
 }
