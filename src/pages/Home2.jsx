@@ -108,16 +108,16 @@ export default function Home2() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] brick-pattern">
+    <div className="min-h-screen bg-[#0a0a0a] brick-pattern overflow-x-hidden">
       {/* SEKSJON 1: Hero og Arcademaskin side om side */}
-      <div className="relative min-h-[90vh] flex flex-col lg:flex-row items-start justify-center px-4 lg:px-20 pt-10 md:pt-20 gap-4">
-        {/* Venstre: Hero (Logo + Mynt) */}
-        <div className="w-full lg:w-1/2 flex justify-center lg:justify-end pt-4">
+      <div className="relative z-10 flex flex-col lg:flex-row items-center justify-center px-4 lg:px-20 pt-0 lg:-mt-10 gap-12">
+        {/* Venstre: Hero */}
+        <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
           <Hero />
         </div>
 
         {/* Høyre: ArcadeMaskin */}
-        <div className="w-full lg:w-1/2 flex justify-center lg:justify-start h-[50vh] lg:h-[75vh]">
+        <div className="w-full lg:w-1/2 flex justify-center lg:justify-starth-auto py-0">
           <ArcadeMachine yellowCoin={"#FACC15"} />
         </div>
       </div>
@@ -125,10 +125,10 @@ export default function Home2() {
       {/* SEKSJON 2: Spillene (Select Mission) - */}
       <section
         id="mission-select-full"
-        className="w-full py-32 bg-black/40 backdrop-blur-md border-t border-magenta-500/20"
+        className="relative z-0 w-full py-32 bg-transparent border-none"
       >
         <div className="max-w-[1400px] mx-auto px-6">
-          <h2 className="font-retro text-5xl md:text-7xl neon-text-pink mb-24 uppercase tracking-widest text-center">
+          <h2 className="font-retro text-5xl md:text-7xl text-[#57C9D3] mb-0 uppercase tracking-widest text-center">
             Select Mission
           </h2>
 

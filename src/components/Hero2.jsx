@@ -3,83 +3,81 @@ import Lottie from "lottie-react";
 import coinData from "../assets/coin.json";
 
 export default function Hero() {
-  const [isFlashing, setIsFlashing ] = useState(false);
+  const [isFlashing, setIsFlashing] = useState(false);
   const [isPoweringOff, setIsPoweringOff] = useState(false);
 
-
   const handleStart = () => {
-    // 1. MYNTEN GÅR INN (Ingenting annet skjer enn lyd og logo-blink)
-    const coinAudio = new Audio("/coin_drop.mp3");
-    coinAudio.play().catch((e) => console.log("Lyd-feil:", e));
+    new Audio("/coin_drop.mp3").play().catch(() => {});
     setIsFlashing(true);
 
     setTimeout(() => {
-      // START KOLLAPS
-      const buzzAudio = new Audio("/screen_buzz2.mp3");
-      buzzAudio.volume = 0.3; // Juster volumet hvis den er for skarp
-      buzzAudio.play().catch((e) => console.log(e));
+      setIsPoweringOff(true);
+      new Audio("/screen_buzz.mp3").play().catch(() => {});
 
-      setIsPoweringOff(true); // Nå blir section bakgrunnen svart og forsvinner!
-
-      // 3.THE SWITCH (Skjer mens alt er helt svart og section er usynlig)
       setTimeout(() => {
-        const element = document.getElementById("mission-select-full");
-        element?.scrollIntoView({ behavior: "instant" });
+        document
+          .getElementById("mission-select-full")
+          ?.scrollIntoView({ behavior: "instant" });
 
-        const tadaAudio = new Audio("/arcade_tada.mp3");
-        tadaAudio.play().catch((e) => console.log(e));
+        new Audio("/expand.mp3").play().catch(() => {});
 
-        // 4. MYK LANDING: Vent 600ms i mørket så scrollingen er helt ferdig
         setTimeout(() => {
           setIsPoweringOff(false);
           setIsFlashing(false);
         }, 500);
-      }, 1000); // Litt pause i mørket før spillene dukker opp
-    }, 800); // Matcher kollaps-tiden
+      }, 1100);
+    }, 800);
   };
-
-     
 
   return (
     <>
+      {/* OVERLAY SOM ÅPNER SEG - Her er de blå linjene lagt inn */}
       <div
-        className={`fixed inset-0 z-[999] pointer-events-none transition-all flex items-center justify-center bg-black
-    ${
-      isPoweringOff
-        ? "opacity-100 scale-y-[0.005] duration-[1000ms]"
-        : "opacity-0 scale-y-100 duration-[800ms]"
-    }`}
+        className={`fixed inset-0 z-[999] pointer-events-none flex flex-col transition-opacity duration-300 ${
+          isPoweringOff ? "opacity-100" : "opacity-0"
+        }`}
       >
+        {/* TOPP-DEL */}
         <div
-          className={`w-full h-[3px] bg-cyan-400 shadow-[0_0_20px_#00ffff] transition-opacity duration-700 
-    ${isPoweringOff ? "opacity-100" : "opacity-0"}`}
-        />
+          className={`flex-1 bg-black transition-transform duration-[1000ms] ease-in-out relative 
+          ${isPoweringOff ? "translate-y-0" : "-translate-y-full"}`}
+        >
+          {/* BLÅ LINJE SOM GÅR OPP */}
+          <div className="absolute bottom-0 left-0 w-full h-[3px] bg-cyan-400 shadow-[0_0_20px_#00ffff]" />
+        </div>
+
+        {/* BUNN-DEL */}
+        <div
+          className={`flex-1 bg-black transition-transform duration-[1000ms] ease-in-out relative
+          ${isPoweringOff ? "translate-y-0" : "translate-y-full"}`}
+        >
+          {/* BLÅ LINJE SOM GÅR NED */}
+          <div className="absolute top-0 left-0 w-full h-[3px] bg-cyan-400 shadow-[0_0_20px_#00ffff]" />
+        </div>
       </div>
 
+      {/* LOGO */}
       <section
-        className={`relative flex flex-col items-center pt-32 transition-all duration-[1000ms]
-        ${isPoweringOff ? "opacity-0 scale-95 brightness-0 blur-lg" : "opacity-100 scale-100 brightness-100 blur-0"}`}
+        className={`relative z-10 flex flex-col items-center pt-30 lg:pt-0 overflow-visible transition-all duration-[1000ms]
+        ${isPoweringOff ? "invisible" : "visible"}`}
       >
-        {/* --HEADER-- */}
-        <header className="text-center lg:text-right mb-6 flex flex-col items-center lg:items-end space-y-2">
-          {/* Logoen bruker isFlashing til sin animasjon */}
+        <header className="flex flex-col items-center text-center mb-6 space-y-0">
           <h1
-            className={`font-neon tracking-tighter leading-[0.8] ${isFlashing ? "animate-ping" : "animate-flicker"}`}
+            className={`font-neon tracking-tighter leading-[0.85] ${isFlashing ? "animate-ping" : "animate-flicker"}`}
           >
-            <span className="text-magenta-500 neon-text-pink block text-[15vw] lg:text-[8.5vw]">
+            <span className="text-magenta-500 neon-text-pink block text-[15vw] lg:text-[8.5vw] tracking-[-0.05em]">
               PLAY
             </span>
-            <span className="text-cyan-400 neon-text-cyan block text-[15vw] lg:text-[8.5vw] mt-2">
+            <span className="text-cyan-400 neon-text-cyan block text-[15vw] lg:text-[7.5vw] mt-2 lg:mt-6 lg:ml-16 tracking-[-0.02em]">
               LOOP
             </span>
           </h1>
 
-          {/* INTERAKTIV LOTTIE-MYNT */}
+          {/* KNAPP */}
           <button
             onClick={handleStart}
-            className="mt-6 group cursor-pointer flex flex-col items-center justify-center bg-transparent border-none"
+            className="mt-8 group cursor-pointer flex flex-col items-center justify-center bg-transparent border-none"
           >
-            {/* Lottie Container */}
             <div className="w-24 h-24 md:w-32 md:h-32 mb-2 group-hover:scale-110 transition-transform duration-300">
               <Lottie animationData={coinData} loop={true} autoplay={true} />
             </div>

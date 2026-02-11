@@ -90,31 +90,6 @@ export default function GameCard({ title, image, path, customTitle, lottieJson})
           <div className="absolute inset-0 shadow-[inset_0_0_100px_rgba(0,0,0,0.2)]" />
         </div>
 
-        {/* BILDET/  */}
-        {/* <div
-          className="flex-1 flex justify-center items-center  w-full pt-12"
-          style={{ transform: "translateZ(100px)" }}
-        >
-          <motion.div
-            animate={{
-              y: [0, -15, 0],
-              filter: isHovered
-                ? "drop-shadow(0 30px 40px rgba(0,0,0,0.4))"
-                : "drop-shadow(0 15px 15px rgba(0,0,0,0.2))",
-            }}
-            transition={{
-              y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-            }}
-          >
-            {isHovered && lottieJson ? (
-              <div className="w-72">
-                <Lottie animationData={lottieJson} loop={true} />
-              </div>
-            ) : (
-              <img src={image} className="w-64 drop-shadow-2xl" alt={title} />
-            )}
-          </motion.div>
-        </div> */}
 
         {/* TITTEL-SVEVENDE "Rendrer customTitle fra Home.jsx*/}
         <div
