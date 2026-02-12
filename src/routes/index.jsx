@@ -4,6 +4,7 @@ import Home from "../pages/Home2";
 import MemoryGame from "../mia/MemoryGame";
 import ReactionGame from "../Therese/ReactionGame";
 import TestPage from "../LeneRenate/TestPage";
+import About from "../pages/About";
 
 export const router = createBrowserRouter([
   {
@@ -12,6 +13,7 @@ export const router = createBrowserRouter([
     errorElement: <h1>An error occured</h1>,
     children: [
       { index: true, element: <Home /> },
+      { path: "about", element: <About /> },
       { path: "memorygame", element: <MemoryGame /> },
       { path: "reactiongame", element: <ReactionGame /> },
       { path: "testpage", element: <TestPage /> },

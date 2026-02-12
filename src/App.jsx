@@ -8,7 +8,7 @@ function App() {
       <div className="crt-overlay " />
 
       <Header2 />
-      <main className="relative z-10 -mt-23 md:-mt-24">
+      <main className="relative z-10 ">
         <Outlet />
       </main>
       <Footer />

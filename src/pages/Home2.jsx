@@ -1,15 +1,32 @@
 import Hero from "../components/Hero2.jsx";
 import GameCard from "../components/GameCard";
 import ArcadeMachine from "../components/ArcadeMachine.jsx";
+import { useEffect } from "react"; 
+import { useLocation } from "react-router-dom";
 
+
+// For at den skal scrolle til spillene
 export default function Home2() {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (hash === "#mission-select-full") {
+      const element = document.getElementById("mission-select-full");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [hash]); // Kjører hver gang "hash-en" i URL-en endres
+
+
+
   // --- SPILLDATA --- //
   const games = [
     {
       id: 1,
       title: "Memory game",
       image: "/gamecard_mia.png",
- 
+
       description: " ",
       path: "memorygame",
       customTitle: (
@@ -108,7 +125,7 @@ export default function Home2() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] brick-pattern overflow-x-hidden">
+    <div className="min-h-screen bg-[#0a0a0a] brick-pattern overflow-x-hidden pt-20 lg:-mt-24 lg:pt-0">
       {/* SEKSJON 1: Hero og Arcademaskin side om side */}
       <div className="relative z-10 flex flex-col lg:flex-row items-center justify-center px-4 lg:px-20 pt-0 lg:-mt-10 gap-12">
         {/* Venstre: Hero */}

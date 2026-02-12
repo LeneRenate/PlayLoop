@@ -46,20 +46,28 @@ export default function Header2() {
         className={`fixed inset-0 z-[105] bg-black/95 backdrop-blur-md flex flex-col items-center justify-center transition-all duration-500 ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
       >
         <div className="flex flex-col gap-10 text-center">
-          {["Home", "Games", "About"].map((item) => (
-            <Link
-              key={item}
-              to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-              onClick={() => setIsOpen(false)}
-              className="text-6xl md:text-8xl font-['VT323'] tracking-widest uppercase transition-all duration-300 cursor-pointer hover:scale-110 text-[#D83BD2] hover:text-white"
-              style={{
-                fontFamily: "'VT323', monospace",
-                textShadow: `0 0 20px #D83BD2`,
-              }}
-            >
-              {item}
-            </Link>
-          ))}
+          {["Home", "Games", "About"].map((item) => {
+            // logikk for stier
+            let path = "/";
+            if (item === "About") path = "/about";
+            if (item === "Games") path = "/#mission-select-full";
+          
+
+            return (
+              <Link
+                key={item}
+                to={path}
+                onClick={() => setIsOpen(false)}
+                className="text-6xl md:text-8xl font-['VT323'] tracking-widest uppercase transition-all duration-300 cursor-pointer hover:scale-110 text-[#D83BD2] hover:text-white"
+                style={{
+                  fontFamily: "'VT323', monospace",
+                  textShadow: `0 0 20px #D83BD2`,
+                }}
+              >
+                {item}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </>
