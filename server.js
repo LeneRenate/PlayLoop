@@ -1,6 +1,10 @@
 import express from "express";
 import cors from "cors";
-import { saveScore, getTopScores, getAllHighscores } from "./src/LeneRenate/controllers/scoreController.js";
+import {
+  saveScore,
+  getTopScores,
+  getAllHighscores,
+} from "./src/LeneRenate/controllers/scoreController.js";
 
 const app = express();
 const PORT = 3000;
