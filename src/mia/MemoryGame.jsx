@@ -1,5 +1,6 @@
-
 import { useState, useEffect } from "react";
+
+import { saveScore } from "../LeneRenate/api/scoreApi.js";
 
 import GameBoard from "../Mia/components/GameBoard.jsx";
 import useMemoryGame from "../Mia/hooks/useMemoryGame.js";
@@ -28,12 +29,18 @@ function MemoryGame() {
   useEffect(() => {
     if (!isGameComplete) return;
 
-    setLastGame({
+    const gameData = {
       nickname,
       score,
       moves,
       finishedAt: new Date().toISOString(),
-    });
+    };
+
+    setLastGame(gameData);
+
+    saveScore("memory", nickname, score).catch((err) =>
+      console.error("Failed to save score:", err),
+    );
   }, [isGameComplete, nickname, score, moves]);
 
   return (
