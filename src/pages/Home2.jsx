@@ -1,18 +1,15 @@
 import Hero from "../components/Hero2.jsx";
 import GameCard from "../components/GameCard";
-import cowboyEmoji from "../assets/Cowboyemoji.json";
 import ArcadeMachine from "../components/ArcadeMachine.jsx";
 
-
-export default function Home() {
-
-// --- SPILLDATA --- //
+export default function Home2() {
+  // --- SPILLDATA --- //
   const games = [
     {
       id: 1,
       title: "Memory game",
       image: "/gamecard_mia.png",
-      lottieJson: cowboyEmoji,
+ 
       description: " ",
       path: "memorygame",
       customTitle: (
@@ -98,13 +95,8 @@ export default function Home() {
           <span
             className="text-[75px] leading-[0.7] italic font-bold mt-1"
             style={{
-              textShadow: `
-              2px 2px 0 #AB6FBE, 
-              -1px -1px 0 #AB6FBE, 
-              3px 3px 0 #000, 
-              -1px -1px 0 #000,
-              4px 4px 5px rgba(0,0,0,0.8)
-            `,
+              textShadow:
+                "2px 2px 0 #AB6FBE, -1px -1px 0 #AB6FBE, 3px 3px 0 #000, -1px -1px 0 #000, 4px 4px 5px rgba(0,0,0,0.8)",
               WebkitTextStroke: "1px black",
             }}
           >
@@ -115,26 +107,40 @@ export default function Home() {
     },
   ];
 
-
-
   return (
-    <div className="min-h-screen bg-[#0a0a0a] brick-pattern">
-      {/* container for hele siden under header */}
-      <div className="flex flex-col lg:flex-row min-h-screen">
-        {/*   Venstre side - Hero + spillene */}
-        <div className="w-full lg:w-1/2 flex flex-col">
+    <div className="min-h-screen bg-[#0a0a0a] brick-pattern overflow-x-hidden">
+      {/* SEKSJON 1: Hero og Arcademaskin side om side */}
+      <div className="relative z-10 flex flex-col lg:flex-row items-center justify-center px-4 lg:px-20 pt-0 lg:-mt-10 gap-12">
+        {/* Venstre: Hero */}
+        <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
           <Hero />
+        </div>
 
-          <div className="w-full py-20 flex flex-col items-center">
-            <h2 className="font-retro text-4xl neon-text-pink mb-20 uppercase tracking-widest text-[#D83BD2]">
-              Select Mission
-            </h2>
+        {/* Høyre: ArcadeMaskin */}
+        <div className="w-full lg:w-1/2 flex justify-center lg:justify-starth-auto py-0">
+          <ArcadeMachine yellowCoin={"#FACC15"} />
+        </div>
+      </div>
 
-            {/* Spillene nedover*/}
-            <section className="flex flex-col gap-40 pb-20">
-              {games.map((game) => (
+      {/* SEKSJON 2: Spillene (Select Mission) - */}
+      <section
+        id="mission-select-full"
+        className="relative z-0 w-full py-32 bg-transparent border-none"
+      >
+        <div className="max-w-[1400px] mx-auto px-6">
+          <h2 className="font-retro text-5xl md:text-7xl text-[#57C9D3] mb-0 uppercase tracking-widest text-center">
+            Select Mission
+          </h2>
+
+          {/* 
+          Mapper spillene horisontalt */}
+          <div className="flex flex-col lg:flex-row justify-center items-center lg:items-stretch gap-10">
+            {games.map((game) => (
+              <div
+                key={game.id}
+                className="w-full max-w-[400px] transform hover:scale-105 transition-all duration-300"
+              >
                 <GameCard
-                  key={game.id}
                   title={game.title}
                   description={game.description}
                   image={game.image}
@@ -142,20 +148,11 @@ export default function Home() {
                   path={game.path}
                   customTitle={game.customTitle}
                 />
-              ))}
-            </section>
+              </div>
+            ))}
           </div>
         </div>
-
-        {/* HØYRE KOLONNE: Arcademaskinen */}
-        <div className="w-full lg:w-1/2 relative bg-black/20 lg:min-h-screen">
-          <div className="lg:sticky lg:top-0 h-screen w-full flex items-center justify-center p-4">
-            <ArcadeMachine yellowCoin={"#FACC15"} />
-          </div>
-        </div>
-      </div>
+      </section>
     </div>
   );
 }
-
-
