@@ -1,7 +1,7 @@
 import ScrollToTop from "./components/ScrollToTop";
 import { Outlet } from "react-router-dom";
 import Footer from "./components/Footer";
-import Header2 from "./components/Header2";
+import Header2 from "./components/Header";
 
 function App() {
   return (

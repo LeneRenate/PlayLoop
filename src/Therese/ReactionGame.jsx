@@ -122,7 +122,7 @@ function ReactionGame() {
         </div>
       </div>
       <button
-        onClick={() => navigate("/")}
+        onClick={() => navigate("/#mission-select-full")}
         className="fixed bottom-10 left-10 z-[100] cursor-pointer group flex flex-col items-center bg-transparent border-none outline-none"
       >
         {" "}
