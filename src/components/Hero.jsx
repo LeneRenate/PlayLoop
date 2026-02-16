@@ -84,6 +84,11 @@ export default function Hero({ onMissionBoom }) {
             </span>
           </h1>
 
+          <p className="mt-16 text-center text-cyan-300 font-retro tracking-widest text-sm md:text-base opacity-80">
+            Welcome to the arcade. <br className="hidden md:block" />
+            Insert coin. Choose your mission.
+          </p>
+
           <button
             onClick={handleStart}
             className="mt-8 group cursor-pointer flex flex-col items-center justify-center bg-transparent border-none"
@@ -93,7 +98,7 @@ export default function Hero({ onMissionBoom }) {
             </div>
 
             <p className="font-retro text-xl md:text-2xl text-yellow-400 tracking-[0.3em] animate-pulse group-hover:text-white transition-colors duration-300 text-center w-full">
-              [ INSERT COIN TO START ]
+              [ INSERT COIN ]
             </p>
           </button>
         </header>

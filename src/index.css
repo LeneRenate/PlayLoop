@@ -100,10 +100,33 @@ body {
     }
 
 
+/* --- RETRO GRID SYSTEM --- */
+
+.perspective-wrapper {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  /* Vi må fjerne bakgrunnsfargen her så den ikke dekker griden */
+  background: transparent !important; 
+  perspective: 1000px;
+}
+
+  @keyframes gridMove {
+      from { background-position: 0 0; }
+      to { background-position: 0 20px; }
+    }
+
+    @keyframes moveRetroGrid {
+      from { background-position: 0 0; }
+      to { background-position: 0 30px; } /* Må matche backgroundSize for smooth loop */
+    }
+
     /* Bakgrunnsmønster, Bricks */
+
   .brick-pattern {
-  background-color: #0a0a12;
-  background-image: 
+   background-color: #0a0a12;
+  background-image:  
     /* Lag 1: CRT-linjer (Øverst) */
     linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%),
     /* Lag 2 & 3: Murstein */
@@ -299,6 +322,8 @@ body {
     opacity: 0;
   }
 }
+
+
 
 
 
