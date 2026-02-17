@@ -2,6 +2,8 @@ import { useState } from "react";
 import Lottie from "lottie-react";
 import coinData from "../assets/coin.json";
 
+
+
 export default function Hero({ onMissionBoom }) {
   const [isFlashing, setIsFlashing] = useState(false);
   const [isPoweringOff, setIsPoweringOff] = useState(false);
@@ -68,7 +70,7 @@ export default function Hero({ onMissionBoom }) {
 
       {/* LOGO */}
       <section
-        className={`relative z-10 flex flex-col items-center pt-30 lg:pt-0 overflow-visible transition-all duration-[1000ms] ${
+        className={`relative z-10 flex flex-col items-center pt-30 lg:pt-0 lg:-mt-50 overflow-visible transition-all duration-[1000ms] ${
           isPoweringOff ? "invisible" : "visible"
         }`}
       >
@@ -84,9 +86,8 @@ export default function Hero({ onMissionBoom }) {
             </span>
           </h1>
 
-          <p className="mt-16 text-center text-cyan-300 font-retro tracking-widest text-sm md:text-base opacity-80">
-            Welcome to the arcade. <br className="hidden md:block" />
-            Insert coin. Choose your mission.
+          <p className="mt-16 text-center text-cyan-300 font-retro tracking-widest text-lg md:text-2xl opacity-80">
+            Welcome to the arcade <br></br>Insert coin & Choose your mission
           </p>
 
           <button

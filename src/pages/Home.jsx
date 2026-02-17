@@ -9,11 +9,11 @@ export default function Home3() {
   const { hash } = useLocation();
   
 
-  const [showTopButton, setShowTopButton] = useState(false);
+const [showTopButton, setShowTopButton] = useState(false);
 
-  // Kun én state: har tittelen blitt trigget?
-  const [titleBoomed, setTitleBoomed] = useState(false);
 
+// ---ANIMASJON VED TRYKK PÅ MYNT---
+const [titleBoomed, setTitleBoomed] = useState(false);
 const [shards, setShards] = useState(() => []);
 const [boomKey, setBoomKey] = useState(0);
 
@@ -41,7 +41,7 @@ const triggerMissionBoom = () => {
 };
 
 
-  // scroll-knapp
+  // ---SCROLL-KNAPP---
   useEffect(() => {
     const handleScroll = () => {
       setShowTopButton(window.scrollY > 400);
@@ -61,6 +61,7 @@ const triggerMissionBoom = () => {
       if (el) el.scrollIntoView({ behavior: "smooth" });
     }
   }, [hash]);
+
 
   // --- SPILLDATA ---
   const games = useMemo(
@@ -204,17 +205,17 @@ const triggerMissionBoom = () => {
  
   return (
     <div className="relative min-h-screen bg-black overflow-hidden flex flex-col items-center justify-center">
-      {/* 1. DET ANIMERTE GULVET (NEON ROSA) */}
+      {/* ---1. DET ANIMERTE GULVET (NEON ROSA)--- */}
       <div
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
           backgroundImage:
-            "linear-gradient(to right, rgba(255, 19, 240, 0.4) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 19, 240, 0.4) 1px, transparent 1px)",
+            "linear-gradient(to right, rgba(255, 19, 240, 0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 19, 240, 0.5) 1px, transparent 1px)",
           backgroundSize: "50px 40px",
           transform: "perspective(600px) rotateX(65deg) ",
           transformOrigin: "center top",
           animation: "moveRetroGrid 7s linear infinite",
-          opacity: "0.4",
+          opacity: "0.6",
         }}
       ></div>
 
@@ -242,7 +243,7 @@ const triggerMissionBoom = () => {
             {titleBoomed && (
               <h2
                 key={boomKey}
-                className="mission-title title-boom font-retro text-5xl md:text-7xl text-[#57C9D3] uppercase tracking-widest"
+                className="mission-title title-boom font-retro text-5xl -mt- md:text-7xl text-[#57C9D3] uppercase tracking-widest text-center"
               >
                 Select Mission
               </h2>

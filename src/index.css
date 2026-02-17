@@ -14,11 +14,6 @@ html {
 }
 
 
-/* Dette gjør at når du scroller til en ID, 
-   stopper den litt FØR så den ikke havner bak menyen */
-#mission-select-full {
-  scroll-margin-top: 100px;
-}
 
 :root {
   /* --- FONTER --- */

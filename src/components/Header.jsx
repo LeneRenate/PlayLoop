@@ -9,6 +9,8 @@ export default function Header2() {
   return (
     <>
       <nav className="fixed top-0 left-0 z-[110] p-8 md:p-12">
+        
+        
         {/* HAMBURGER-KNAPP */}
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -50,14 +52,31 @@ export default function Header2() {
             // logikk for stier
             let path = "/";
             if (item === "About") path = "/about";
-            if (item === "Games") path = "/#mission-select-full";
+           if (item === "Games") path = "/";
           
 
             return (
               <Link
                 key={item}
                 to={path}
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                  setIsOpen(false);
+                  
+                   if (item === "Home") {
+                     window.scrollTo({ top: 0, behavior: "smooth" });
+                   }
+
+                  if (item === "Games") {
+                    setTimeout(() => {
+                      const el = document.getElementById("mission-select-full");
+                      if (el) {
+                        el.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }, 50);
+                    // "Vent 50ms før du kjører denne koden, ."
+                    // slik at elementet er ferdig rendret.
+                  }
+                }}
                 className="text-6xl md:text-8xl font-['VT323'] tracking-widest uppercase transition-all duration-300 cursor-pointer hover:scale-110 text-[#D83BD2] hover:text-white"
                 style={{
                   fontFamily: "'VT323', monospace",
