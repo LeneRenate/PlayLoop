@@ -2,7 +2,7 @@ function LastGamePanel ({lastGame}) {
     if(!lastGame) {
         return (
             <aside>
-                <h4>Last game</h4>
+                <h4>Last game:</h4>
                 <p>No completed game yet.</p>
             </aside>
         )

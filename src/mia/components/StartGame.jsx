@@ -11,7 +11,7 @@ function StartGame({ nickname, onNicknameChange, onStart }) {
           onChange={(e) => onNicknameChange(e.target.value)}
           maxLength={12}
         />
-        <button onClick={onStart} disabled={!nickname}>
+        <button onClick={onStart} disabled={!nickname} className="cursor-pointer">
           Start game
         </button>
       </section>

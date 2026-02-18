@@ -43,11 +43,12 @@ function MemoryGame() {
     // Wrapper
     <div className="flex justify-center">
       {/* Container */}
-      <article className="flex gap-8 items-center">
-        {/* left side */}
-        <div className="flex flex-col items-center gap-6">
+      <div className="flex justify-center">
+        <article className="relative">
+          {/* HEADER + BOARD */}
+          <div className="flex flex-col items-center gap-6">
+            <GameHeader score={score} moves={moves} />
 
-          <GameHeader score={score} moves={moves} />
             <div className="relative inline-block">
               <GameBoard
                 cards={cards}
@@ -57,6 +58,7 @@ function MemoryGame() {
                   hasStarted && !isGameComplete ? handleCardClick : () => {}
                 }
               />
+
               {!hasStarted && (
                 <StartGame
                   nickname={nickname}
@@ -75,8 +77,13 @@ function MemoryGame() {
               )}
             </div>
           </div>
-          <LastGamePanel lastGame={lastGame} />
-      </article>
+
+          {/* last game panel */}
+          <div className="absolute top-1/2 -translate-y-1/2 left-full ml-12">
+            <LastGamePanel lastGame={lastGame} />
+          </div>
+        </article>
+      </div>
 
       <button
         onClick={() => navigate("/#mission-select-full")}

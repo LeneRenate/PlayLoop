@@ -5,7 +5,7 @@ function GameCompleteOverlay ({onNewGame}) {
             <section>
                 <h3>Round complete</h3>
 
-                <button onClick={onNewGame}>
+                <button onClick={onNewGame} className="cursor-pointer">
                     New game
                 </button>
             </section> 
