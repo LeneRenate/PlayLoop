@@ -43,41 +43,44 @@ function MemoryGame() {
     // Wrapper
     <div className="flex justify-center">
       {/* Container */}
-      <article className="flex flex-col items-center gap-6">
-        <GameHeader score={score} moves={moves} />
-        <div className="relative inline-block">
-          <GameBoard
-            cards={cards}
-            flippedIndices={flippedIndices}
-            matchedIndices={matchedIndices}
-            onCardClick={
-              hasStarted && !isGameComplete ? handleCardClick : () => {}
-            }
-          />
-          {!hasStarted && (
-            <StartGame
-              nickname={nickname}
-              onNicknameChange={setNickname}
-              onStart={() => setHasStarted(true)}
-            />
-          )}
+      <article className="flex gap-8 items-center">
+        {/* left side */}
+        <div className="flex flex-col items-center gap-6">
 
-          {isGameComplete && (
-            <GameCompleteOverlay
-              onNewGame={() => {
-                resetGame();
-                setHasStarted(true);
-              }}
-            />
-          )}
-        </div>
+          <GameHeader score={score} moves={moves} />
+            <div className="relative inline-block">
+              <GameBoard
+                cards={cards}
+                flippedIndices={flippedIndices}
+                matchedIndices={matchedIndices}
+                onCardClick={
+                  hasStarted && !isGameComplete ? handleCardClick : () => {}
+                }
+              />
+              {!hasStarted && (
+                <StartGame
+                  nickname={nickname}
+                  onNicknameChange={setNickname}
+                  onStart={() => setHasStarted(true)}
+                />
+              )}
 
-        <LastGamePanel lastGame={lastGame} />
+              {isGameComplete && (
+                <GameCompleteOverlay
+                  onNewGame={() => {
+                    resetGame();
+                    setHasStarted(true);
+                  }}
+                />
+              )}
+            </div>
+          </div>
+          <LastGamePanel lastGame={lastGame} />
       </article>
 
       <button
         onClick={() => navigate("/#mission-select-full")}
-        className="fixed bottom-10 left-10 z-[100] cursor-pointer group flex flex-col items-center bg-transparent border-none outline-none"
+        className="fixed bottom-10 left-10 z-100 cursor-pointer group flex flex-col items-center bg-transparent border-none outline-none"
       >
         {" "}
         <div className="w-14 h-14 border-4 border-[#57C9D3] shadow-[0_0_15px_#57C9D3] rounded-full flex items-center justify-center bg-black/80 transition-all duration-300 group-hover:scale-110 group-hover:border-white group-hover:shadow-[0_0_20px_white]">

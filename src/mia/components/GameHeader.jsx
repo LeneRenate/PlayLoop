@@ -1,11 +1,10 @@
-function GameHeader({ score, moves, onReset }) {
+function GameHeader({ score, moves }) {
   return (
     <header className="mb-6 text-center">
-      <h3 className="text-xl font-semibold">Memory game under produksjon</h3>
+      <h3 className="text-xl font-semibold">Memory game</h3>
       <p>
         Score: {score} · Moves: {moves}
       </p>
-      <button onClick={onReset}>New round</button>
     </header>
   );
 }
