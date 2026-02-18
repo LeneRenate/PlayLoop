@@ -1,65 +1,75 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
-import {Link} from "react-router-dom";
 
-export default function Header() {
-  const neonPink = "#D83BD2"; // PlayLoop Magenta
-
+export default function Header2() {
+  const [isOpen, setIsOpen] = useState(false);
+  const neonPink = "#D83BD2";
 
   return (
-    <nav className="absolute top-0  z-[100] w-full bg-transparent py-8 px-10 md:px-20 flex items-center justify-between">
-      {/* LOGO */}
-      <Link to="/" className="no-underline shrink-0">
-        <h1
-          className="text-4xl tracking-tighter leading-none hover:text-white hover:drop-shadow-[0_0_8px_#fff] transition-all"
-          style={{
-            fontFamily: "'VT323', monospace",
-            color: neonPink,
-          }}
+    <>
+      <nav className="fixed top-0 left-0 z-[110] p-8 md:p-12">
+        {/* HAMBURGER-KNAPP */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="group flex flex-col gap-2 p-2 outline-none bg-transparent border-none cursor-pointer z-[210] transition-transform duration-300 hover:scale-110"
+          aria-label="Menu"
         >
-          PlayLoop
-        </h1>
-      </Link>
+          {/* Linje 1 */}
+          <div
+            className={`h-1.5 shadow-[0_0_10px_#D83BD2] transition-all duration-300 
+    bg-[#D83BD2] group-hover:bg-white group-hover:shadow-[0_0_20px_#D83BD2] ${
+      isOpen ? "w-12 rotate-45 translate-y-3.5" : "w-10"
+    }`}
+          />
 
-      {/* NAV-LENKER */}
-      <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-16 md:gap-24 lg:gap-32">
-        <Link
-          to="/"
-          className="transition-all duration-300 hover:text-white hover:drop-shadow-[0_0_8px_#fff] whitespace-nowrap"
-          style={{
-            fontFamily: "'VT323', monospace",
-            fontSize: "26px",
-            color: neonPink,
-          }}
-        >
-          Home
-        </Link>
+          {/* Linje 2 */}
+          <div
+            className={`h-1.5 shadow-[0_0_10px_#D83BD2] transition-all duration-300 
+    bg-[#D83BD2] group-hover:bg-white group-hover:shadow-[0_0_20px_#D83BD2] ${
+      isOpen ? "opacity-0" : "w-12"
+    }`}
+          />
 
-        {/* GAMES: Kan enten gå til en oversikt eller bare være en dekorativ trigger */}
-        <Link
-          to="/testpage" // Midlertidig link til testpage som en "spillmeny"
-          className="transition-all duration-300 hover:text-white hover:drop-shadow-[0_0_8px_#fff] whitespace-nowrap"
-          style={{
-            fontFamily: "'VT323', monospace",
-            fontSize: "26px",
-            color: neonPink,
-          }}
-        >
-          Games
-        </Link>
+          {/* Linje 3 */}
+          <div
+            className={`h-1.5 shadow-[0_0_10px_#D83BD2] transition-all duration-300 
+    bg-[#D83BD2] group-hover:bg-white group-hover:shadow-[0_0_20px_#D83BD2] ${
+      isOpen ? "w-12 -rotate-45 -translate-y-3.5" : "w-8"
+    }`}
+          />
+        </button>
+      </nav>
 
-        {/* LENKE: Om oss */}
-        <Link
-          to="/about"
-          className="transition-all duration-300hover:text-white hover:drop-shadow-[0_0_8px_#fff] whitespace-nowrap"
-          style={{
-            fontFamily: "'VT323', monospace",
-            fontSize: "26px",
-            color: neonPink,
-          }}
-        >
-          Om oss
-        </Link>
+      {/* MENY OVERLAY (Vises når man trykker på knappen) */}
+      <div
+        className={`fixed inset-0 z-[105] bg-black/95 backdrop-blur-md flex flex-col items-center justify-center transition-all duration-500 ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+      >
+        <div className="flex flex-col gap-10 text-center">
+          {["Home", "Games", "About"].map((item) => {
+            // logikk for stier
+            let path = "/";
+            if (item === "About") path = "/about";
+            if (item === "Games") path = "/#mission-select-full";
+          
+
+            return (
+              <Link
+                key={item}
+                to={path}
+                onClick={() => setIsOpen(false)}
+                className="text-6xl md:text-8xl font-['VT323'] tracking-widest uppercase transition-all duration-300 cursor-pointer hover:scale-110 text-[#D83BD2] hover:text-white"
+                style={{
+                  fontFamily: "'VT323', monospace",
+                  textShadow: `0 0 20px #D83BD2`,
+                }}
+              >
+                {item}
+              </Link>
+            );
+          })}
+        </div>
       </div>
-    </nav>
+    </>
   );
 }
