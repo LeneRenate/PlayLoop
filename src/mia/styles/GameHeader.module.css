@@ -1,0 +1,12 @@
+.gameHeader{
+    font-family: var(--font-neon);
+    font-size: 80px;
+}
+
+.p{
+    text-align: center;
+    color: var(--color-neon-pink);
+    font-family: var(--font-retro);
+    font-size: x-large;
+
+}

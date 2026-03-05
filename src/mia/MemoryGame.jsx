@@ -48,7 +48,7 @@ function MemoryGame() {
 
   return (
     // Wrapper
-    <div className="flex justify-center">
+    <div className="flex justify-center bg-[#0a0a12]">
       {/* Container */}
       <div className="flex justify-center">
         <article className="relative">
@@ -86,7 +86,7 @@ function MemoryGame() {
           </div>
 
           {/* last game panel */}
-          <div className="absolute top-1/2 -translate-y-1/2 left-full ml-12">
+          <div className="absolute top-1/2 -translate-y-1/2 left-full ml-8 w-60">
             <LastGamePanel lastGame={lastGame} />
           </div>
         </article>
