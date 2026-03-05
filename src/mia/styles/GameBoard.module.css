@@ -1,0 +1,7 @@
+.p{
+    text-align: center;
+    color: var(--color-neon-pink);
+    font-family: var(--font-retro);
+    font-size: x-large;
+    margin-bottom: 20px
+}
