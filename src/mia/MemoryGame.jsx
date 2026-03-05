@@ -54,10 +54,11 @@ function MemoryGame() {
         <article className="relative">
           {/* HEADER + BOARD */}
           <div className="flex flex-col items-center gap-6">
-            <GameHeader score={score} moves={moves} />
+            <GameHeader />
 
             <div className="relative inline-block">
               <GameBoard
+              score={score} moves={moves}
                 cards={cards}
                 flippedIndices={flippedIndices}
                 matchedIndices={matchedIndices}
