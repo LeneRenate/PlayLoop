@@ -10,7 +10,7 @@ async function createScoreTable() {
   await db.exec(`
     CREATE TABLE IF NOT EXISTS scores(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    game_id TEXT NOT NULL
+    game_id TEXT NOT NULL,
     nickname TEXT NOT NULL,
     score INTEGER NOT NULL,
     timestamp INTEGER DEFAULT (strftime('%s', 'now'))
