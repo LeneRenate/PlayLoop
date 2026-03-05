@@ -14,11 +14,6 @@ html {
 }
 
 
-/* Dette gjør at når du scroller til en ID, 
-   stopper den litt FØR så den ikke havner bak menyen */
-#mission-select-full {
-  scroll-margin-top: 100px;
-}
 
 :root {
   /* --- FONTER --- */
@@ -67,22 +62,30 @@ body {
 
 
 
-/* --- ANIMASJONER --- */
+/* --- ANIMASJONER PLAY LOOP--- */
 
-/* Animasjon for blinking */
+
 @keyframes flicker {
-    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
-    20%, 22%, 24%, 55% { opacity: 0.4; }
+    0%, 18%, 22%, 25%, 53%, 57%, 100% { 
+        opacity: 1; 
+        filter: brightness(1);
+    }
+    20%, 24%, 55% { 
+        opacity: 0.8; 
+        filter: brightness(0.8); 
+    }
 }
+
+
 .animate-flicker {
-    animation: flicker 2s infinite; 
+    animation: flicker 5s infinite; 
 }
 
 /* Farger og glød til "Neonskilt/header" */
 @layer components {
     .neon-text-pink {
-        text-shadow: 0 0 5px #fff, 0 0 10px #f0f, 0 0 20px #f0f;
-    }
+    text-shadow: 0 0 5px #fff, 0 0 10px #f0f, 0 0 20px #f0f, 0 0 40px #f0f; 
+}
     .neon-text-cyan {
         text-shadow: 0 0 5px #fff, 0 0 10px #00f2ff, 0 0 20px #00f2ff;
     }
@@ -100,10 +103,33 @@ body {
     }
 
 
+    /* --------------------------------------------- */
+/* ----------------- RETRO GRID SYSTEM ------------ */
+
+.perspective-wrapper {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  /* Vi må fjerne bakgrunnsfargen her så den ikke dekker griden */
+  background: transparent !important; 
+  perspective: 1000px;
+}
+
+  @keyframes gridMove {
+      from { background-position: 0 0; }
+      to { background-position: 0 20px; }
+    }
+
+    @keyframes moveRetroGrid {
+      from { background-position: 0 0; }
+      to { background-position: 0 30px; } /* Må matche backgroundSize for smooth loop */
+    }
+
     /* Bakgrunnsmønster, Bricks */
   .brick-pattern {
-  background-color: #0a0a12;
-  background-image: 
+   background-color: #0a0a12;
+  background-image:  
     /* Lag 1: CRT-linjer (Øverst) */
     linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%),
     /* Lag 2 & 3: Murstein */
@@ -121,15 +147,15 @@ body {
   height: 100vh !important;
   pointer-events: none !important;
   /* ekstremt høy z-index for å ligge over absolutt alt */
-  z-index: 999999 !important;
+  z-index: 9999 !important;
   
-  /* CSS-gradient som lager svarte striper.(background-size: 100% 3px- denne kan endres til 4 eller 1 for mer/mindre effekt) */
+  /* CSS-gradient som lager svarte striper.*/
   background: linear-gradient(
     rgba(18, 16, 16, 0) 50%, 
-    rgba(0, 0, 0, 0.2) 50%
+    rgba(0, 0, 0, 0.15) 50% 
   );
-  background-size: 100% 3px;
-  opacity: 1;
+  background-size: 100% 2px; 
+  opacity: 0.8;
 }
 
     /* Font-familiene */
@@ -155,7 +181,6 @@ body {
     pointer-events: none;
     z-index: 10;
     }
-
 }
 
 
@@ -178,7 +203,6 @@ body {
   );
 }
 
-
 /* hjelper på farten til kortene */
 .will-change-transform {
   will-change: transform;
@@ -192,111 +216,95 @@ body {
 
 
 
-/* =========================
-   SELECT MISSION — FINAL WOW VERSION
-   ========================= */
 
-/* Base: sentrert, synlig, ingen animasjon */
-.mission-title {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  transform-origin: center;
-  opacity: 1;
-}
+/* ---------------MYNT-ANIMASJON---------------------- */
 
-/* Boom-animasjonen */
-.title-boom {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: titleCore 1100ms cubic-bezier(.12,.95,.18,1) forwards;
+@keyframes coinArcDrop {
+  0% { transform: translateY(0) scale(1) rotateY(0deg); }
+  15% { transform: translateY(-60px) scale(1.02) rotateY(180deg); }
+  30% { transform: translateY(-140px) scale(1.05) rotateY(360deg); }
+  45% { transform: translateY(-180px) scale(1.08) rotateY(540deg); }
+  60% { transform: translateY(40px) scale(0.95) rotateY(720deg); }
+  75% { transform: translateY(-20px) scale(1.02) rotateY(900deg); }
+  90% { transform: translateY(10px) scale(0.98) rotateY(1080deg); }
+  100% { transform: translateY(0) scale(1) rotateY(1260deg); }
 }
 
 
-/* Smash-animasjonen (WOW-versjon) */
-@keyframes titleCore {
-  0% {
-    opacity: 0;
-    transform: translateX(-50%) translateY(120px) scale(0.05);
-    filter: blur(40px);
+
+/* -----------SELECT MISSION ANIMasjoner =----------- */
+
+/* Sakte vokse- og krympe-effekt for teksten */
+@keyframes textBoom {
+  0% { 
+    opacity: 0; 
+    transform: scale(0.1); /* Starter bitteliten */
+    filter: blur(20px) brightness(5);
   }
-  40% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(-40px) scale(2.2);
-    filter: blur(6px);
+  15% { 
+    opacity: 1; 
+    transform: scale(3.5); /* Blir ekstremt stor lynraskt (Action!) */
+    filter: blur(0px) brightness(2);
   }
-  60% {
-    transform: translateX(-50%) translateY(10px) scale(0.85);
-    filter: blur(1px);
-  }
-  78% {
-    transform: translateX(-50%) translateY(-6px) scale(1.12);
-  }
-  90% {
-    transform: translateX(-50%) translateY(3px) scale(0.97);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0) scale(1);
-    filter: blur(0);
+  100% { 
+    opacity: 1; 
+    transform: scale(1); /* Krymper sakte tilbake til normal størrelse */
+    filter: blur(0px) brightness(1);
   }
 }
 
-/* Flash burst */
-.title-boom::before {
-  content: "";
-  position: absolute;
-  inset: -50px;
-  pointer-events: none;
-  background: radial-gradient(circle, rgba(0,255,255,0.85) 0%, rgba(0,255,255,0.35) 45%, rgba(0,0,0,0) 72%);
-  mix-blend-mode: screen;
-  animation: titleFlash 380ms ease-out forwards;
-  z-index: -1;
-}
-
-@keyframes titleFlash {
-  0% { opacity: 0; transform: scale(0.55); }
-  40% { opacity: 1; transform: scale(1.15); }
-  100% { opacity: 0; transform: scale(1.7); }
-}
-
-/* Shards */
-.title-shard {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 6px;
-  height: 18px;
-  border-radius: 2px;
-  background: linear-gradient(to bottom, rgba(0,255,255,1), rgba(120,255,255,0.6));
-  box-shadow: 0 0 18px rgba(0,255,255,0.35);
-  transform: translate(-50%, -50%);
-  animation: shardFly 900ms ease-out forwards;
-  animation-delay: var(--d);
-  opacity: 0.95;
-}
-
-.title-shard:nth-child(3n) {
-  width: 4px;
-  height: 12px;
-  opacity: 0.85;
-}
-
+/* Eksplosjon av partikler */
 @keyframes shardFly {
+  0% { transform: translate(0, 0) scale(1.5); opacity: 1; }
+  100% { transform: translate(var(--x), var(--y)) scale(0); opacity: 0; }
+}
+
+/* Gjør selve linjen mer synlig som standard */
+.mission-underline {
+  height: 4px;
+  background: #00ffff;
+  box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
+  width: 100%;
+  max-width: 800px;
+  opacity: 0;
+  margin-bottom: 0 !important;
+}
+
+
+
+@keyframes laserScan {
+  0% { transform: scaleX(0); transform-origin: left; opacity: 0; }
+  5% { opacity: 1; height: 4px; }
+  50% { transform: scaleX(1); transform-origin: left; height: 6px; filter: drop-shadow(0 0 15px #57C9D3); }
+  51% { transform-origin: right; }
+  95% { opacity: 1; }
+  100% { transform: scaleX(0); transform-origin: right; opacity: 0; }
+}
+
+
+
+@keyframes finalPop {
   0% {
-    transform: translate(-50%, -50%) scale(1) rotate(0deg);
-    filter: blur(0px);
+    transform: scaleX(1);
     opacity: 1;
   }
   100% {
-    transform:
-      translate(calc(-50% + var(--x)), calc(-50% + var(--y)))
-      scale(var(--s))
-      rotate(380deg);
-    filter: blur(1px);
-    opacity: 0;
+    transform: scaleX(1.05);
+    opacity: 0; /* Linjen blir helt usynlig til slutt */
+  }
+}
+
+.mission-underline {
+  width: 260px; /* passer fint for mobil */
+  height: 4px;
+  background: #57C9D3;
+  box-shadow: 0 0 15px #57C9D3;
+  margin-top: 10px;
+}
+
+@media (min-width: 768px) {
+  .mission-underline {
+    width: 600px; /* Går tilbake til stor bredde på iPad/PC */
   }
 }
 
@@ -304,3 +312,209 @@ body {
 
 
 
+/* ----------------------------------------------------- */
+/* -------------MOBIL OG MINDRE SKJERMER---------------- */
+/* ----------------------------------------------------- */
+
+
+/* --- MOBIL-JUSTERINGER (Under 768px) --- */
+@media (max-width: 767px) {
+ 
+  .py-10 {
+    padding-top: 0px !important; 
+    padding-bottom: 0px !important; /* Fjern padding i toppen og bunnen av selve kortet */
+  }
+
+.hide-scrollbar {
+    min-height: 460px !important; /* Litt høyere for å gi plass til både tekst og prikker */
+    display: flex !important;
+    align-items: center !important; /* Sentrerer kortet vertikalt i sin tildelte plass */
+    padding-bottom: 60px !important; /* Dedikert plass til prikkene helt nederst */
+    margin-top: 20px !important;
+ 
+    gap: 40px !important; /* Gir mer luft mellom kortene */
+    padding-left: 50px !important; /* Hjelper med å "lande" midt på */
+    padding-right: 50px !important;
+    scroll-snap-type: x mandatory; /* Tvinger den til å lande på et kort */
+  }
+
+  /* hvert kort "snapper" til midten */
+  .hide-scrollbar > div {
+    scroll-snap-align: center;
+  }
+
+  /* Flytter kortene litt ned pga. knappen er borte */
+  #mission-select-full {
+    padding-top: 50px !important;
+  }
+}
+
+
+
+
+/* ----------------------------------------------- */
+/* --- iPAD PRO JUSTERING (1024px til 1366px) --- */
+@media (min-width: 1024px) and (max-width: 1366px) {
+  
+
+  /* Dytter Play Loop og Mynt lenger ned */
+  .relative.z-10.flex-col {
+    padding-top: 15vh !important; 
+  }
+
+  /* Større hero-tekst */
+  .font-neon, 
+  .font-neon span,
+  h1.font-neon {
+    font-size: 15vw !important; 
+    line-height: 0.9 !important;
+    display: block !important;
+  }
+
+  /* større select mission-tekst */
+  #mission-select-full h2.font-retro,
+  #mission-select-full h2 span {
+    font-size: 12vw !important; /* Gjør denne større på iPad Pro */
+    text-align: center !important;
+  }
+
+/* Litt mindre kort */
+  .shrink-0 {
+    transform: scale(0.82) !important; 
+    /* mellomrom mellom kortene */
+    margin-left: -10px !important;
+    margin-right: -10px !important;
+  }
+
+  .hide-scrollbar {
+    /*  et lite positivt gap i tillegg for å kontrollere luften */
+    gap: 15px !important; 
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    overflow: visible !important;
+    width: 100% !important;
+  }
+
+  /* Sørge for at ingenting tvinger dem til venstre */
+  .hide-scrollbar > div {
+    scroll-snap-align: none !important;
+    flex-shrink: 0 !important;
+  }
+
+  #mission-select-full {
+    padding-top: 0px !important;
+    padding-bottom: 40px !important;
+  }
+}
+
+
+
+/* ------------------------------------------------------- */
+/*- iPHONE SE / SMÅ/LAVE SKJERMER (Spesifikk høyde-fiks) - */
+@media (max-height: 700px) {
+
+/* 1. Flytt Hero-seksjonen oppover */
+  .relative.z-10.flex-col {
+    padding-top: 40px !important; /* Redusert fra 60-80px */
+    margin-bottom: 0 !important;
+  }
+
+  /* 4.  "Select Mission" starter litt høyere */
+  #mission-select-full {
+    margin-top: -20px !important;
+  }
+
+  .shrink-0 {
+    transform: scale(0.85) !important; /* krymper kortene*/
+    margin-top: -80px !important; /* Drar kortene  opp*/
+  }
+  
+  .hide-scrollbar {
+    min-height: 380px !important;
+    padding-bottom: 40px !important;
+  }
+}
+
+
+
+/* --------------------------------------------------------- */
+/* ------------TILPASNING FOR DESKTOP----------------------- */
+@media (min-width: 1280px) {
+
+
+  #mission-select-full h2 {
+    font-size: 80px !important; /* Låser størrelsen litt mer på PC */
+  }
+
+  .shrink-0 {
+    transform: scale(1) !important; /* Full størrelse på desktop */
+    margin: 0 20px !important; /* Litt luft mellom kort */
+  }
+
+  .hide-scrollbar {
+    justify-content: center !important;
+    display: flex !important;
+    gap: 30px !important;
+    margin-top: 0 !important;
+  }
+
+  
+  /* 4.  "Select Mission" starter litt høyere */
+  #mission-select-full {
+    margin-top: -30px !important;
+   
+  }
+  
+/* 1. Dra hele seksjonen (inkl. overskrift) opp mot Hero */
+  #mission-select-full {
+    margin-top: -140px !important; /* Øk dette tallet for å dra det enda høyere */
+    padding-top: 0 !important;
+  }
+}
+
+
+
+/* --------------------------------------------------- */
+/* --- FIX FOR Å SKJULE SCROLLBAR PÅ ALLE ENHETER --- */
+.hide-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none !important;
+}
+
+
+
+
+/* ---------------------------------------------------------- */
+/* --- SPESIFIKK TILPASNING FOR SYSTEM-BOKSER (About/Highscores) --- */
+@media (max-width: 767px) {
+  
+  /* Vi treffer kun boksene som ligger inne i disse spesifikke sidene */
+  .brick-pattern .max-w-3xl, 
+  .brick-pattern .max-w-2xl {
+    margin-top: -20px !important; /* Drar boksen litt opp */
+    padding: 20px !important;    /* Mindre indre luft */
+    width: 95% !important;       /* Bruker mer av skjermbredden */
+  }
+
+  /* Reduserer skriftstørrelsen  på mobil */
+  .brick-pattern h1 {
+    font-size: 2.5rem !important; 
+    margin-bottom: 1rem !important;
+  }
+
+  /* Justerer teksten inni så den tar mindre vertikal plass */
+  .brick-pattern .text-2xl, 
+  .brick-pattern .text-3xl {
+    font-size: 1.1rem !important;
+    line-height: 1.3 !important;
+  }
+
+  /* Reduserer mellomrom mellom avsnittene */
+  .brick-pattern .space-y-6 > * + * {
+    margin-top: 1rem !important;
+  }
+}
