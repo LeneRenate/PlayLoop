@@ -1,44 +1,61 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Lottie from "lottie-react";
 import coinData from "../assets/coin.json";
 
 export default function Hero({ onMissionBoom }) {
   const [isFlashing, setIsFlashing] = useState(false);
   const [isPoweringOff, setIsPoweringOff] = useState(false);
+  const [isCoinAnimating, setIsCoinAnimating] = useState(false);
+
+  const audioRefs = useRef({});
+
+  const playSound = (soundName) => {
+    if (!audioRefs.current[soundName]) {
+      audioRefs.current[soundName] = new Audio(`audio/${soundName}`);
+    }
+    const audio = audioRefs.current[soundName];
+    audio.currentTime = 0;
+    audio.play().catch(() => {});
+  };
 
   const handleStart = () => {
-    new Audio("audio/coin_drop.mp3").play().catch(() => {});
-    setIsFlashing(true);
+    playSound("coin_flip.wav");
+    setIsCoinAnimating(true);
+
+    setTimeout(() => {
+      playSound("coin_drop.mp3");
+    }, 400);
+
+    setTimeout(() => {
+      setIsFlashing(true);
+    }, 1000);
 
     setTimeout(() => {
       setIsPoweringOff(true);
-      new Audio("audio/screen_buzz.mp3").play().catch(() => {});
+      playSound("screen_buzz.mp3");
+    }, 1400);
+
+    setTimeout(() => {
+      const html = document.documentElement;
+      const oldScroll = html.style.scrollBehavior;
+      html.style.scrollBehavior = "auto";
+
+      document
+        .getElementById("mission-select-full")
+        ?.scrollIntoView({ behavior: "auto" });
+
+      html.style.scrollBehavior = oldScroll;
+
+      playSound("expand.mp3");
+
+      if (onMissionBoom) onMissionBoom();
 
       setTimeout(() => {
-        // scroll uten smooth for å unngå lag
-        const html = document.documentElement;
-        const oldScroll = html.style.scrollBehavior;
-        html.style.scrollBehavior = "auto";
-
-        document
-          .getElementById("mission-select-full")
-          ?.scrollIntoView({ behavior: "auto" });
-
-        html.style.scrollBehavior = oldScroll;
-
-        new Audio("audio/expand.mp3").play().catch(() => {});
-
-        // BOOM: trigger overskriften når du vil (juster)
-        setTimeout(() => {
-          if (onMissionBoom) onMissionBoom();
-        }, 1400);
-
-        setTimeout(() => {
-          setIsPoweringOff(false);
-          setIsFlashing(false);
-        }, 500);
-      }, 1100);
-    }, 800);
+        setIsPoweringOff(false);
+        setIsFlashing(false);
+        setIsCoinAnimating(false);
+      }, 800);
+    }, 2600);
   };
 
   return (
@@ -50,7 +67,7 @@ export default function Hero({ onMissionBoom }) {
         }`}
       >
         <div
-          className={`flex-1 bg-black transition-transform duration-[1000ms] ease-in-out relative ${
+          className={`flex-1 bg-black transition-transform duration-[1200ms] ease-in-out relative ${
             isPoweringOff ? "translate-y-0" : "-translate-y-full"
           }`}
         >
@@ -58,7 +75,7 @@ export default function Hero({ onMissionBoom }) {
         </div>
 
         <div
-          className={`flex-1 bg-black transition-transform duration-[1000ms] ease-in-out relative ${
+          className={`flex-1 bg-black transition-transform duration-[1200ms] ease-in-out relative ${
             isPoweringOff ? "translate-y-0" : "translate-y-full"
           }`}
         >
@@ -68,7 +85,7 @@ export default function Hero({ onMissionBoom }) {
 
       {/* LOGO */}
       <section
-        className={`relative z-10 flex flex-col items-center pt-30 lg:pt-0 overflow-visible transition-all duration-[1000ms] ${
+        className={`relative z-10 flex flex-col items-center pt-30 lg:pt-0 lg:-mt-50 overflow-visible transition-all duration-[1000ms] ${
           isPoweringOff ? "invisible" : "visible"
         }`}
       >
@@ -84,16 +101,27 @@ export default function Hero({ onMissionBoom }) {
             </span>
           </h1>
 
+          <p className="mt-16 text-center text-cyan-300 font-retro tracking-widest text-lg md:text-2xl opacity-80">
+            Welcome to the arcade <br></br>Insert coin & Choose your mission
+          </p>
+
+          {/* MYNT - sprett */}
           <button
             onClick={handleStart}
             className="mt-8 group cursor-pointer flex flex-col items-center justify-center bg-transparent border-none"
           >
-            <div className="w-24 h-24 md:w-32 md:h-32 mb-2 group-hover:scale-110 transition-transform duration-300">
-              <Lottie animationData={coinData} loop autoplay />
+            <div
+              className={`w-24 h-24 md:w-32 md:h-32 mb-2 ${
+                isCoinAnimating
+                  ? "animate-[coinArcDrop_1.2s_cubic-bezier(.25,.46,.45,.94)_forwards]"
+                  : ""
+              }`}
+            >
+              <Lottie animationData={coinData} loop={true} autoplay={true} />
             </div>
 
             <p className="font-retro text-xl md:text-2xl text-yellow-400 tracking-[0.3em] animate-pulse group-hover:text-white transition-colors duration-300 text-center w-full">
-              [ INSERT COIN TO START ]
+              [ INSERT COIN ]
             </p>
           </button>
         </header>
