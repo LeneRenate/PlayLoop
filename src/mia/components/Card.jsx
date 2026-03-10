@@ -4,7 +4,7 @@ function Card({ card, isFlipped, isMatched, onClick }) {
   return (
     <div
       onClick={onClick}
-      className="w-45 aspect-9/10 perspective-[1000px] cursor-pointer"
+      className="w-45 aspect-9/10 perspective-[1000px] cursor-pointer "
     >
       <div
         className={`w-full h-full relative transition-transform duration-500 preserve-3d ${
@@ -21,7 +21,7 @@ function Card({ card, isFlipped, isMatched, onClick }) {
         </div>
 
         {/* card back */}
-        <div className="absolute w-full h-full top-0 left-0 backface-hidden rotate-y-180">
+        <div className="absolute w-full h-full top-0 left-0 backface-hidden rotate-y-180 ">
           <img
             src="/mia-images/bakside1.jpg"
             alt="Card back"

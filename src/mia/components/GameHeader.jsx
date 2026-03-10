@@ -1,11 +1,12 @@
-function GameHeader({ score, moves, onReset }) {
+import styles from "../styles/GameHeader.module.css"
+
+function GameHeader() {
   return (
-    <header className="mb-6 text-center">
-      <h3 className="text-xl font-semibold">Memory game under produksjon</h3>
-      <p>
-        Score: {score} · Moves: {moves}
-      </p>
-      <button onClick={onReset}>New round</button>
+    <header>
+      <h3 className={styles.gameHeader}>
+        <span className="neon-text-pink">Memory</span>
+        <span className="neon-text-cyan">game</span>
+      </h3>
     </header>
   );
 }
