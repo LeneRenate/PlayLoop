@@ -62,30 +62,30 @@ export default function Hero({ onMissionBoom }) {
     <>
       {/* OVERLAY */}
       <div
-        className={`fixed inset-0 z-[999] pointer-events-none flex flex-col transition-opacity duration-300 ${
+        className={`fixed inset-0 z-999 pointer-events-none flex flex-col transition-opacity duration-300 ${
           isPoweringOff ? "opacity-100" : "opacity-0"
         }`}
       >
         <div
-          className={`flex-1 bg-black transition-transform duration-[1200ms] ease-in-out relative ${
+          className={`flex-1 bg-black transition-transform duration-1200ms ease-in-out relative ${
             isPoweringOff ? "translate-y-0" : "-translate-y-full"
           }`}
         >
-          <div className="absolute bottom-0 left-0 w-full h-[3px] bg-cyan-400 shadow-[0_0_20px_#00ffff]" />
+          <div className="absolute bottom-0 left-0 w-full h-3px bg-cyan-400 shadow-[0_0_20px_#00ffff]" />
         </div>
 
         <div
-          className={`flex-1 bg-black transition-transform duration-[1200ms] ease-in-out relative ${
+          className={`flex-1 bg-black transition-transform duration-1200ms ease-in-out relative ${
             isPoweringOff ? "translate-y-0" : "translate-y-full"
           }`}
         >
-          <div className="absolute top-0 left-0 w-full h-[3px] bg-cyan-400 shadow-[0_0_20px_#00ffff]" />
+          <div className="absolute top-0 left-0 w-full h-3px bg-cyan-400 shadow-[0_0_20px_#00ffff]" />
         </div>
       </div>
 
       {/* LOGO */}
       <section
-        className={`relative z-10 flex flex-col items-center pt-30 lg:pt-0 lg:-mt-50 overflow-visible transition-all duration-[1000ms] ${
+        className={`relative z-10 flex flex-col items-center pt-30 lg:pt-0 overflow-visible transition-all duration-1000ms ${
           isPoweringOff ? "invisible" : "visible"
         }`}
       >

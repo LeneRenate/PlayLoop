@@ -1,4 +1,4 @@
-import "../../mia/styles/flip.css"
+import "../../mia/styles/flip.css";
 
 function Card({ card, isFlipped, isMatched, onClick }) {
   return (
@@ -23,7 +23,7 @@ function Card({ card, isFlipped, isMatched, onClick }) {
         {/* card back */}
         <div className="absolute w-full h-full top-0 left-0 backface-hidden rotate-y-180 ">
           <img
-            src="/mia-images/bakside1.jpg"
+            src="/PlayLoop/mia-images/bakside1.jpg"
             alt="Card back"
             className="w-full h-full object-cover rounded-lg"
           />
