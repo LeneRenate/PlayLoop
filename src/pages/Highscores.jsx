@@ -12,15 +12,18 @@ export default function Highscores() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] brick-pattern flex flex-col items-center justify-center p-6 pt-24">
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         className="w-full max-w-2xl bg-black/90 border-4 border-[#57C9D3] p-8 md:p-12 shadow-[0_0_30px_rgba(87,201,211,0.3)] relative"
       >
         {/* Neon stripe i toppen (Cyan i stedet for lilla for variasjon) */}
         <div className="absolute top-0 left-0 w-full h-2 bg-[#57C9D3] shadow-[0_0_10px_#57C9D3]" />
-        
-        <h1 className="font-retro text-5xl md:text-7xl text-white text-center mb-10 tracking-widest" style={{ textShadow: '0 0 15px #57C9D3' }}>
+
+        <h1
+          className="font-retro text-5xl md:text-7xl text-white text-center mb-10 tracking-widest"
+          style={{ textShadow: "0 0 15px #57C9D3" }}
+        >
           HALL_OF_FAME
         </h1>
 
@@ -58,8 +61,8 @@ export default function Highscores() {
 
         {/* Return knapp */}
         <div className="mt-10 text-center">
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="inline-block px-10 py-3 border-2 border-[#D83BD2] text-[#D83BD2] hover:bg-[#D83BD2] hover:text-black transition-all font-retro text-2xl uppercase tracking-widest"
           >
             Return to Base

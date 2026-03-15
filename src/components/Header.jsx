@@ -1,16 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-
 export default function Header2() {
   const [isOpen, setIsOpen] = useState(false);
-  
 
   return (
     <>
       <nav className="fixed top-0 left-0 z-[110] p-8 md:p-12">
-        
-        
         {/* HAMBURGER-KNAPP */}
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -45,7 +41,7 @@ export default function Header2() {
 
       {/* MENY OVERLAY (Vises når man trykker på knappen) */}
       <div
-        className={`fixed inset-0 z-[105] bg-black/95 backdrop-blur-md flex flex-col items-center justify-center transition-all duration-500 ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+        className={`fixed inset-0 z-105 bg-black/95 backdrop-blur-md flex flex-col items-center justify-center transition-all duration-500 ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
       >
         <div className="flex flex-col gap-10 text-center">
           {["Home", "Games", "Highscores", "About"].map((item) => {

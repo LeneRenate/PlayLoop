@@ -14,12 +14,11 @@ import NeonEffects from "../pages/design/NeonEffects";
 import Animations from "../pages/design/Animations";
 import GridSystem from "../pages/design/GridSystem";
 import IconLibrary from "../pages/design/IconLibrary";
-import Highscores from "../pages/Higcscores";
-
+import Highscores from "../pages/Highscores";
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/PlayLoop",
     element: <App />,
     errorElement: <h1>An error occured</h1>,
     children: [

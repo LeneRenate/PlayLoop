@@ -69,7 +69,7 @@ export default function Home3() {
       {
         id: 1,
         title: "Memory game",
-        image: "images/gamecard_mia.png",
+        image: "/PlayLoop/images/gamecard_mia.png",
         description: " ",
         path: "memorygame",
         customTitle: (
@@ -89,7 +89,7 @@ export default function Home3() {
               Memory
             </span>
             <span
-              className="text-[65px] mt-[-20px] italic font-bold flex items-center"
+              className="text-[65px] -mt-5 italic font-bold flex items-center"
               style={{
                 textShadow: `
             2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
@@ -117,7 +117,7 @@ export default function Home3() {
       {
         id: 2,
         title: "Reaction Game",
-        image: "images/gamecard_therese.png",
+        image: "/PlayLoop/images/gamecard_therese.png",
         description: " ",
         path: "reactiongame",
         customTitle: (
@@ -137,7 +137,7 @@ export default function Home3() {
               Reaction
             </span>
             <span
-              className="text-[64px] mt-[-22px] italic font-bold"
+              className="text-[64px] -mt-5.5 italic font-bold"
               style={{
                 textShadow: `
       1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 
@@ -153,12 +153,12 @@ export default function Home3() {
       {
         id: 3,
         title: "Super Secret Game ?",
-        image: "images/secret_game.png",
+        image: "/PlayLoop/images/secret_game.png",
         description: " ",
         path: "secretgame",
         customTitle: (
           <div
-            className="flex flex-col items-center mt-[-40px]"
+            className="flex flex-col items-center -mt-10"
             style={{ color: "#6BCFC2" }}
           >
             {["Super", "Secret", "Game", "?"].map((word, i) => (
@@ -220,9 +220,9 @@ export default function Home3() {
         id="mission-select-full"
         className="relative z-0 w-full pt-4 md:pt-8 xl:pt-10 pb-40 bg-transparent overflow-hidden"
       >
-        <div className="max-w-[1400px] mx-auto px-6">
+        <div className="max-w-1400px mx-auto px-6">
           {/* TITLE WRAP */}
-          <div className="relative flex flex-col items-center justify-center mt-4 mb-10 min-h-[140px]">
+          <div className="relative flex flex-col items-center justify-center mt-4 mb-10 min-h-140px">
             {titleBoomed && (
               <>
                 <div
@@ -352,7 +352,7 @@ export default function Home3() {
       {showTopButton && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-10 right-10 z-[100] bg-transparent border-none outline-none group"
+          className="fixed bottom-10 right-10 z-100 bg-transparent border-none outline-none group"
         >
           <div className="w-16 h-16 border-[6px] border-[#ff00ff] shadow-[0_0_20px_#ff00ff] rounded-full flex items-center justify-center bg-black/80 group-hover:scale-110 transition-all">
             <svg
