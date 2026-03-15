@@ -48,43 +48,54 @@ function MemoryGame() {
 
   return (
     // Wrapper
-    <div className="flex justify-center">
+    <div className="flex justify-center bg-[#0a0a12]">
       {/* Container */}
-      <article className="flex flex-col items-center gap-6">
-        <GameHeader score={score} moves={moves} />
-        <div className="relative inline-block">
-          <GameBoard
-            cards={cards}
-            flippedIndices={flippedIndices}
-            matchedIndices={matchedIndices}
-            onCardClick={
-              hasStarted && !isGameComplete ? handleCardClick : () => {}
-            }
-          />
-          {!hasStarted && (
-            <StartGame
-              nickname={nickname}
-              onNicknameChange={setNickname}
-              onStart={() => setHasStarted(true)}
-            />
-          )}
+      <div className="flex justify-center">
+        <article className="relative">
+          {/* HEADER + BOARD */}
+          <div className="flex flex-col items-center gap-6">
+            <GameHeader />
 
-          {isGameComplete && (
-            <GameCompleteOverlay
-              onNewGame={() => {
-                resetGame();
-                setHasStarted(true);
-              }}
-            />
-          )}
-        </div>
+            <div className="relative inline-block">
+              <GameBoard
+              score={score} moves={moves}
+                cards={cards}
+                flippedIndices={flippedIndices}
+                matchedIndices={matchedIndices}
+                onCardClick={
+                  hasStarted && !isGameComplete ? handleCardClick : () => {}
+                }
+              />
 
-        <LastGamePanel lastGame={lastGame} />
-      </article>
+              {!hasStarted && (
+                <StartGame
+                  nickname={nickname}
+                  onNicknameChange={setNickname}
+                  onStart={() => setHasStarted(true)}
+                />
+              )}
+
+              {isGameComplete && (
+                <GameCompleteOverlay
+                  onNewGame={() => {
+                    resetGame();
+                    setHasStarted(true);
+                  }}
+                />
+              )}
+            </div>
+          </div>
+
+          {/* last game panel */}
+          <div className="absolute top-1/2 -translate-y-1/2 left-full ml-8 w-60">
+            <LastGamePanel lastGame={lastGame} />
+          </div>
+        </article>
+      </div>
 
       <button
         onClick={() => navigate("/#mission-select-full")}
-        className="fixed bottom-10 left-10 z-[100] cursor-pointer group flex flex-col items-center bg-transparent border-none outline-none"
+        className="fixed bottom-10 left-10 z-100 cursor-pointer group flex flex-col items-center bg-transparent border-none outline-none"
       >
         {" "}
         <div className="w-14 h-14 border-4 border-[#57C9D3] shadow-[0_0_15px_#57C9D3] rounded-full flex items-center justify-center bg-black/80 transition-all duration-300 group-hover:scale-110 group-hover:border-white group-hover:shadow-[0_0_20px_white]">
